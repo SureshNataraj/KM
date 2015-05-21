@@ -1,0 +1,1697 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0048)http://www.dmxzone.net/ShowDetail.asp?NewsId=564 -->
+<HTML><HEAD><TITLE>Determine Width and Height of uploaded image - Dreamweaver MX and UltraDev Zone - DMXzone.NET</TITLE>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type><LINK 
+href="determinimage pure asp_files/udzone.css" rel=stylesheet><LINK 
+href="determinimage pure asp_files/ie4plus.css" rel=stylesheet><LINK 
+href="determinimage pure asp_files/topheader.css" rel=stylesheet><LINK 
+href="determinimage pure asp_files/content.css" rel=stylesheet><LINK 
+href="determinimage pure asp_files/ColorCode.css" rel=stylesheet><LINK 
+href="determinimage pure asp_files/ASColorCode.css" rel=stylesheet>
+<SCRIPT language=JavaScript src="determinimage pure asp_files/JSlib.js" 
+type=text/javascript></SCRIPT>
+
+<META content="MSHTML 5.00.3502.5390" name=GENERATOR></HEAD>
+<BODY background="determinimage pure asp_files/background.gif" leftMargin=0 
+onresize=UD_resize(); topMargin=0 marginheight="0" marginwidth="0">
+<TABLE border=0 cellPadding=0 cellSpacing=0 height=110 width="100%">
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR>
+          <TD background="determinimage pure asp_files/background_top.jpg" 
+          height=91>
+            <TABLE border=0 cellPadding=0 cellSpacing=0 height=91 
+              width="100%"><TBODY>
+              <TR>
+                <TD rowSpan=2 width=219><IMG height=91 
+                  src="determinimage pure asp_files/logo.jpg" width=219></TD>
+                <TD align=right colSpan=3 height=10 vAlign=top><IMG height=11 
+                  src="determinimage pure asp_files/kn_afronding.jpg" width=5><A 
+                  href="http://www.dmxzone.net/search.asp"><IMG border=0 
+                  height=11 src="determinimage pure asp_files/kn_search.jpg" 
+                  width=43></A><A href="mailto:info@DMXzone.NET"><IMG border=0 
+                  height=11 src="determinimage pure asp_files/kn_email.jpg" 
+                  width=36></A></TD></TR>
+              <TR>
+                <TD>&nbsp;</TD>
+                <TD width=468><IFRAME frameBorder=0 height=60 id=aFrame 
+                  marginHeight=0 marginWidth=0 name=aFrame scrolling=no 
+                  src="determinimage pure asp_files/udzoneBanner.htm" 
+                  style="HEIGHT: 60px; OVERFLOW: hidden" 
+                  width="100%">
+            </IFRAME></TD>
+                <TD width=10>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD align=left 
+          background="determinimage pure asp_files/background_menu.jpg" 
+          height=19 vAlign=center>
+            <SCRIPT language=JavaScript1.2>
+var goleftimage='images/udzone/left.gif', gorightimage='images/udzone/right.gif'
+var imageWidth=11, imageHeight = 15, menuwidth=document.body.clientWidth-imageWidth*2-11
+var scrollspeed=6
+var actualwidth='', ns_scroll, righttime, lefttime
+
+function fillup(){
+  actualwidth=test2.offsetWidth
+  if (test2.style.pixelLeft>(menuwidth-actualwidth)) document.all("gorightimage").src='images/udzone/right.gif' 
+  if (test2.style.pixelLeft<0) document.all("goleftimage").src ='images/udzone/left.gif'
+  if (document.all("leftcontent"))
+    UD_resize();
+}
+window.onload=fillup;
+
+function moveleft(){
+  if (test2.style.pixelLeft>(menuwidth-actualwidth)) {
+    test2.style.pixelLeft-=scrollspeed;
+    document.all("goleftimage").src = 'images/udzone/left.gif' //width=imageWidth        
+  } else {
+    document.all("gorightimage").src = 'images/1pix.gif' //width=0    
+    if (lefttime) clearTimeout(lefttime);
+  }  
+  lefttime=setTimeout("moveleft()",50)
+}
+
+function moveright(){
+  if (test2.style.pixelLeft<0) {
+    test2.style.pixelLeft+=scrollspeed
+    document.all("gorightimage").src = 'images/udzone/right.gif' //width=imageWidth    
+  } else {
+    document.all("goleftimage").src = 'images/1pix.gif' //width=0    
+    if (righttime) clearTimeout(righttime);  
+  }  
+  righttime=setTimeout("moveright()",50)
+}
+
+with (document){
+  write('<table border="0" cellspacing="0" cellpadding="0">')
+  write('<td valign="middle"><a href="javascript:;" onMouseover="moveright()" onMouseout="if (righttime) clearTimeout(righttime)"><img id="goleftimage" src="images/1pix.gif" border=0 width="'+imageWidth+'" height="'+imageHeight+'"></a>&nbsp;</td>')
+  write('<td valign="top">')
+  write('<span style="position:relative;width:'+menuwidth+';">')
+  write('<span style="position:absolute;width:'+menuwidth+';clip:rect(0 '+menuwidth+' auto 0)">')
+  write('<span id="test2" style="position:absolute;left:0;top:0">')
+  write('<nobr><a href="index.asp?TypeId=9" class="navigation">Home</a>&nbsp;&nbsp;<a href="index.asp?TypeId=1" class="navigation">News</a>&nbsp;&nbsp;<a href="categories.asp?TypeId=28" class="navigation">Premium Content</a>&nbsp;&nbsp;<a href="categories.asp?TypeId=2" class="navigation">Tutorials</a>&nbsp;&nbsp;<a href="categories.asp?TypeId=3" class="navigation">Extensions</a>&nbsp;&nbsp;<a href="categories.asp?TypeId=4" class="navigation">Projects</a>&nbsp;&nbsp;<a href="forum" class="navigation">TalkZones</a>&nbsp;&nbsp;<a href="categories.asp?TypeId=5" class="navigation">Books</a>&nbsp;&nbsp;<a href="categories.asp?TypeId=6" class="navigation">Links</a>&nbsp;&nbsp;<a href="categories.asp?TypeId=7" class="navigation_selected">FAQ\'s</a>&nbsp;&nbsp;<a href="index.asp?TypeId=11" class="navigation">Polls</a>&nbsp;&nbsp;<a href="myZone.asp" class="navigation">MyDMXzone</a>&nbsp;&nbsp;<a href="search.asp" class="navigation">Search</a>&nbsp;&nbsp;</nobr>')
+  write('</span></span></span>')
+  write('</td>')
+  write('<td valign="middle">&nbsp;<a href="javascript:;" onMouseover="moveleft()" onMouseout="if (lefttime) clearTimeout(lefttime)">')
+  write('<img id="gorightimage" src="images/1pix.gif" border=0 width="'+imageWidth+'" height="'+imageHeight+'"></a>')
+  write('</td></table>')
+}
+</SCRIPT>
+          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<DIV id=leftcontent>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>General</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <UL class=clsSideBarBlockUL>
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/index.asp?TypeId=30">Premium 
+              Content</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/categories.asp?TypeId=25">Request a 
+              Tutorial</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/categories.asp?TypeId=26">Request an 
+              Extension</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/index.asp?TypeId=23">Our Sponsors</A> 
+
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/index.asp?TypeId=29">Our Writers</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/index.asp?TypeId=27">Link To Us</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/index.asp?TypeId=24">About Us</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="mailto:info@dmxzone.com">Email Us</A> 
+      </LI></UL></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Search</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <FORM action=search.asp method=get name=form1>
+            <TABLE border=0 cellPadding=0 cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD colSpan=2>Enter Search:</TD></TR>
+              <TR>
+                <TD><INPUT class=text name=SearchString size=8 
+                  style="WIDTH: 115px"> <INPUT name=Action type=hidden 
+                  value=Search> </TD>
+                <TD><INPUT class=knop name=submit type=submit value=Go> 
+                </TD></TD></TR></TBODY></TABLE></FORM></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<SCRIPT>
+function AddItem(id) {
+    
+    alert('Please login first  ...');
+    
+}
+</SCRIPT>
+
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Your Stuff</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <FORM name=AddForm>
+            <TABLE border=0 cellPadding=0 cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD>Add</TD></TR>
+              <TR>
+                <TD><SELECT name=AddNew onchange=AddItem(this.value)> 
+                    <OPTION selected value=1>News</OPTION> <OPTION 
+                    value=28>Premium Content</OPTION> <OPTION 
+                    value=2>Tutorials</OPTION> <OPTION 
+                    value=3>Extensions</OPTION> <OPTION 
+                    value=4>Projects</OPTION> <OPTION value=5>Books</OPTION> 
+                    <OPTION value=6>Links</OPTION> <OPTION 
+                    value=7>FAQ's</OPTION> <OPTION 
+                  value=11>Polls</OPTION></SELECT> </TD>
+                <TD><INPUT class=knop onclick=AddItem(document.AddForm.AddNew.value) type=button value=Go> 
+                </TD></TD></TR></TBODY></TABLE></FORM></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Our Main Sponsors</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText><A 
+            href="http://www.dmxzone.com/bannerClick.asp?adid=44" 
+            target=_blank><IMG alt="Proudly hosted at MaximumASP" border=0 
+            height=45 src="determinimage pure asp_files/maxasp.gif" 
+            width=140></A> </TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<SCRIPT>
+function getRadioValue (radioButtonOrGroup) {
+  var value = null;
+  if (radioButtonOrGroup.length) { // group 
+    for (var b = 0; b < radioButtonOrGroup.length; b++)
+      if (radioButtonOrGroup[b].checked)
+        value = radioButtonOrGroup[b].value;
+  }
+  else if (radioButtonOrGroup.checked)
+    value = radioButtonOrGroup.value;
+  return value;
+}
+</SCRIPT>
+
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Featured Premium Content</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <DIV align=center><A href="http://www.dmxzone.net/go?5058">Taking 
+            CSS Further</A><BR><BR></DIV><BR>
+            <P align=center><A href="http://www.dmxzone.net/go?5058"><IMG 
+            border=0 
+src="determinimage pure asp_files/table-to-css.jpg"></A></P>
+            <P>In my <A href="http://www.dmxzone.net/go?4967">last article 
+            </A>for DMXZone I looked at how we could take a standard tables 
+            based layout and trim it down - using CSS for text styling and to 
+            create navigation button effects.<BR>&nbsp;<BR>In this article we 
+            will look more deeply into CSS. We will discover how to take our 
+            tables based layout down to a very basic one-table structure - 
+            removing all the nesting that makes the pages harder to maintain and 
+            in complicated pages can cause accessibility problems, and we will 
+            look at some of things that CSS can do over and above simply 
+            replacing HTML attributes. We will also look at a way of creating a 
+            navigation menu without using a table - by styling an html list with 
+            CSS.</P></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE><BR>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Featured Extension</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <DIV align=center><A href="http://www.dmxzone.net/go?3965">Smart 
+            Image Processor</A><BR><BR></DIV><BR>
+            <P align=center><IMG border=0 
+            src="determinimage pure asp_files/resize.jpg"></P>
+            <P><STRONG>Smart Image Processor</STRONG> is a powerfull Image 
+            Resize extension that will allow you to quickly and easily 
+            <STRONG>resize images </STRONG>after you have uploaded them and 
+            <STRONG>create thumbnails</STRONG> of the uploaded 
+            files.&nbsp;Another great Add-On&nbsp;to <A 
+            href="http://www.dmxzone.net/go?1622">Pure ASP 
+            Upload</A><BR>&nbsp;</P>
+            <P>You don't need to write any additional code, it is all click and 
+            use!</P>
+            <P class=Code><FONT color=#ff0000><STRONG>NEW:</STRONG> Now with 
+            support for ImgWriter and AspThumb Server components!</FONT></P>
+            <P class=Code>Check the <A 
+            href="http://www.dmxzone.net/go?3977">Online HELP</A> here on 
+            DMXzone!</P></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE><BR>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Featured Book</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <DIV align=center><A href="http://www.dmxzone.net/go?4443">Beginning 
+            Dreamweaver MX</A><BR><BR><A 
+            href="http://www.dmxzone.net/go?4443"><IMG border=0 
+            src="determinimage pure asp_files/1861008201.01.MZZZZZZZ.jpg"></A><BR></DIV><BR>
+            <P>This book is primarily for complete beginners to web site 
+            programming who have access to Dreamweaver MX and want to learn how 
+            to create dynamic web sites with it.</P>
+            <P>But the book doubles as a comprehensive reference to the features 
+            of Dreamweaver MX, so it will also be a useful resource to more 
+            experienced web developers who want to learn how to use the latest 
+            version of Dreamweaver.</P></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE><BR>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Poll</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <DIV align=center><A href="http://www.dmxzone.net/go?3958">Using 
+            ASP.NET already?</A><BR><BR></DIV><BR>You as a <STRONG>Dreamweaver 
+            MX</STRONG> user, have been programming&nbsp;in classic ASP - 
+            VBscript or Jscript. Have you switched to ASP.NET? 
+            <FORM action=showDetail.asp method=post name=form_side_vote><INPUT 
+            name=TypeId type=hidden value=11> <INPUT name=NewsId type=hidden 
+            value=3958> 
+            <TABLE border=0 cellPadding=0 cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=1> 
+                </TD>
+                <TD style="FONT-SIZE: 70%"><B>Yes</B>, I'm working in ASP.NET 
+                  but also in Classic ASP<BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=2> 
+                </TD>
+                <TD style="FONT-SIZE: 70%"><B>Yes</B>, I'm working in ASP.NET 
+                  only now<BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=3> 
+                </TD>
+                <TD style="FONT-SIZE: 70%"><B>No</B>, not yet will wait 
+                  another 6 moths<BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=4> 
+                </TD>
+                <TD style="FONT-SIZE: 70%"><B>No</B>, will wait another 
+                  year<BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=5> 
+                </TD>
+                <TD style="FONT-SIZE: 70%"><B>No</B>, will never switch - it 
+                  is too difficult<BR></TD></TR></TBODY></TABLE><BR><INPUT class=knop name=Submit onclick="if (!getRadioValue(document.form_side_vote.NewsVote)) {alert('Please choose an option to vote!');return false}" type=submit value=Vote> 
+            </FORM><A 
+            href="http://www.dmxzone.net/showDetail.asp?TypeId=11&amp;NewsId=3958&amp;ShowVotes=true">View 
+            Results</A> </TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE><BR></DIV>
+<DIV id=centercontent>
+<TABLE background="determinimage pure asp_files/1pix.gif" border=0 cellPadding=4 
+cellSpacing=0 class=clsFullContent id=fullContent>
+  <TBODY>
+  <TR class=clsSubHeaderBack>
+    <TD class=clsSubHeader height=5 vAlign=top width="100%">
+      <TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 
+        width="100%"><TBODY>
+        <TR align=left vAlign=top>
+          <TD height=10 width=10><IMG height=10 
+            src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+          <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+          colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+            width=141></TD></TR>
+        <TR align=left vAlign=top>
+          <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+            src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+          <TD align=left background="determinimage pure asp_files/t_bg.jpg" 
+          vAlign=top width="100%">
+            <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+              <TBODY>
+              <TR class=clsSideBarBlockTitleBack>
+                <TD class=clsSideBarBlockTitle>Welcome Visitor!</TD></TR>
+              <TR>
+                <TD class=clsSideBarBlockRondText>
+                  <SCRIPT language=JavaScript>
+<!--
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_validateForm() { //v4.0
+  var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+  for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=MM_findObj(args[i]);
+    if (val) { nm=val.name; if ((val=val.value)!="") {
+      if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+        if (p<1 || p==(val.length-1)) errors+='- '+nm+' must contain an e-mail address.\n';
+      } else if (test!='R') {
+        if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
+        if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+          min=test.substring(8,p); max=test.substring(p+1);
+          if (val<min || max<val) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
+    } } } else if (test.charAt(0) == 'R') errors += '- '+nm+' is required.\n'; }
+  } if (errors) alert('The following error(s) occurred:\n'+errors);
+  document.MM_returnValue = (errors == '');
+}
+//-->
+</SCRIPT>
+
+                  <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+                    <TBODY>
+                    <TR>
+                      <TD vAlign=top><SPAN class=clsSubHeaderMessage>
+                        <P>Share your knowledge with the Dreamweaver MX and 
+                        UltraDev Community!</P>
+                        <UL>
+                          <LI>Download/<A 
+                          href="http://www.dmxzone.net/go?69">upload 
+                          tutorials</A>, extensions, faq's - share your 
+                          knowledge with the community!
+                          <LI><B><A 
+                          href="http://www.dmxzone.net/RegisterUser.asp?mode=Register">FREE 
+                          Registration</A></B> allows you to fully customize and 
+                          participate at DMXzone.com!
+                          <LI>We fully <STRONG>respect your <A 
+                          href="http://www.dmxzone.net/privacy.asp#privacy">Privacy</A></STRONG></LI></UL><BR><A 
+                        href="http://www.dmxzone.net/RegisterUser.asp?mode=Register">Sign 
+                        up / register</A> </SPAN></TD>
+                      <TD align=right vAlign=top width=5>
+                        <FORM action=showdetail.asp?NewsId=564 method=post 
+                        name=LoginForm 
+                        onsubmit="MM_validateForm('strUserID','','R','strPassword','','R');return document.MM_returnValue">
+                        <TABLE border=0 cellPadding=0 cellSpacing=0 
+width="100%">
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2></TD></TR>
+                          <TR>
+                            <TD class=clsSubHeaderLogin colSpan=2>Username: 
+                              <INPUT class=text name=strUserID size=10 
+                              style="WIDTH: 90px"> </TD></TR>
+                          <TR>
+                            <TD class=clsSubHeaderLogin>Password: <INPUT 
+                              class=text name=strPassword size=10 
+                              style="WIDTH: 90px" type=password> </TD>
+                            <TD vAlign=bottom><INPUT class=knop name=Submit type=submit value=Login> 
+                            </TD></TR>
+                          <TR>
+                            <TD class=clsSubHeaderLogin colSpan=2><INPUT 
+                              CHECKED name=savePass type=checkbox value=1>Save 
+                              Password?<BR><A 
+                              href="http://www.dmxzone.net/ShowDetail.asp?NewsId=564#" 
+                              onclick="GP_AdvOpenWindow('SendPassword.asp','ForgotPass','fullscreen=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes',450,200,'center','ignoreLink','',0,'');return document.MM_returnValue">Forgot 
+                              your Password?</A> 
+                    </TD></TR></TBODY></TABLE></FORM></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+            height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+        <TR align=left vAlign=top>
+          <TD height=10 width=10><IMG height=10 
+            src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+          <TD align=right background="determinimage pure asp_files/t_bm.jpg" 
+          colSpan=2 vAlign=bottom><IMG height=10 
+            src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 
+        width="100%"><TBODY>
+        <TR align=left vAlign=top>
+          <TD height=10 width=10><IMG height=10 
+            src="determinimage pure asp_files/tw_tl.jpg" width=10></TD>
+          <TD align=right background="determinimage pure asp_files/tw_tm.jpg" 
+          colSpan=2><IMG height=10 
+            src="determinimage pure asp_files/tw_tr.jpg" width=141></TD></TR>
+        <TR align=left vAlign=top>
+          <TD background="determinimage pure asp_files/tw_ml.jpg"><IMG 
+            height=1 src="determinimage pure asp_files/tw_ml.jpg" width=10></TD>
+          <TD align=left background="determinimage pure asp_files/tw_bg.jpg" 
+          vAlign=top width="100%">
+            <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+              <TBODY>
+              <TR class=clsSideBarBlockTitleBack>
+                <TD class=clsSideBarBlockTitle><A 
+                  href="http://www.dmxzone.net/categories.asp?TypeId=7">FAQ's</A> 
+                  / ASP</TD></TR>
+              <TR>
+                <TD><BR>
+                  <TABLE align=center border=0 cellPadding=0 cellSpacing=0 
+                  width="100%">
+                    <TBODY>
+                    <TR>
+                      <TD class=clsNewsHeadTitleBack colSpan=2></TD></TR>
+                    <TR>
+                      <TD class=clsNewsTitleBack colSpan=2>
+                        <DIV style="FLOAT: left"><SPAN 
+                        class=clsNewsTitle>Determine Width and Height of 
+                        uploaded image </SPAN></DIV>
+                        <DIV style="FLOAT: right"><SPAN 
+                        class=clsNewsDownloadStats><B>4803</B> Users read 
+                        it.<BR></SPAN></DIV></TD>
+                    <TR>
+                      <TD class=clsContent colSpan=2></TD></TR>
+                    <TR>
+                      <TD class=clsContent colSpan=2>
+                        <DIV style="FLOAT: left"><A class=clsNewsUser 
+                        href="http://www.dmxzone.net/myZone.asp?userid=1852">Steve 
+                        Davis</A> <SPAN class=clsNewsDate>(April 18, 
+                        2001)</SPAN> </DIV>
+                        <DIV style="FLOAT: right">
+                        <TABLE border=0 cellPadding=2 cellSpacing=0>
+                          <TBODY>
+                          <TR class=clsNewsRating>
+                            <TD align=right class=clsNewsRating 
+                              noWrap><EM>Rating:</EM></TD>
+                            <TD class=clsNewsRating>11 users&nbsp;</TD>
+                            <TD vAlign=bottom>
+                              <TABLE border=2 cellPadding=0 cellSpacing=0 
+                              class=clsRating>
+                                <TBODY>
+                                <TR height=4>
+                                <TD bgColor=#ff3300><IMG height=4 
+                                src="determinimage pure asp_files/FF3300.gif" 
+                                width=20></TD>
+                                <TD bgColor=#ff3300><IMG height=4 
+                                src="determinimage pure asp_files/FF3300.gif" 
+                                width=20></TD>
+                                <TD bgColor=#ff3300><IMG height=4 
+                                src="determinimage pure asp_files/FF3300.gif" 
+                                width=20></TD>
+                                <TD bgColor=#ff3300><IMG height=4 
+                                src="determinimage pure asp_files/FF3300.gif" 
+                                width=20></TD>
+                                <TD bgColor=#ff3300><IMG height=4 
+                                src="determinimage pure asp_files/FF3300.gif" 
+                                width=20></TD></TR></TBODY></TABLE></TD>
+                            <TD class=clsNewsRating noWrap>&nbsp;<B>5</B> out 
+                              of 5</TD></TR></TBODY></TABLE></DIV></TD></TR>
+                    <TR>
+                      <TD class=clsContent colSpan=2></TD></TR>
+                    <TR>
+                      <TD class=clsContent colSpan=2 vAlign=top><SPAN 
+                        class=clsNewsText><BR>
+                        <P>This code was found at <A 
+                        href="http://www.4guysfromrolla.com/" 
+                        target=_blank>http://www.4guysfromrolla.com/</A> and is 
+                        very cool.</P>
+                        <P>It will most often determine whether or not a file is 
+                        an image, though in rare instances it can give a false 
+                        positive.&nbsp; The script will then return the height, 
+                        width and colour depth.</P>
+                        <P>Note at the bottom is a test area to determine 
+                        whether it is working.&nbsp; You can change the folder 
+                        so it finds some images on your system.&nbsp; I have it 
+                        commented out right now.</P>
+                        <P>This hooks in with Pure ASP Upload V1.5 and V2.0 
+                        quite nicely.&nbsp; I have used it as an include file 
+                        with success.&nbsp; </P><BR></SPAN><BR><BR></TD></TR>
+                    <TR>
+                      <TD colSpan=2>
+                        <P><FONT face=courier size=2>&lt;%<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp; This routine will attempt to 
+                        identify any filespec passed&nbsp; :::<BR>&nbsp; 
+                        ':::&nbsp; as a graphic file (regardless of the 
+                        extension). This will :::<BR>&nbsp; ':::&nbsp; work with 
+                        BMP, GIF, JPG and PNG 
+                        files.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Based on ideas presented by David 
+                        Crowell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        (credit where 
+                        due)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        '::: blah blah blah blah blah blah blah blah blah blah 
+                        blah blah :::<BR>&nbsp; '::: blah blah blah blah blah 
+                        blah blah blah blah blah blah blah :::<BR>&nbsp; '::: 
+                        blah blah&nbsp;&nbsp;&nbsp;&nbsp; Copyright *c* 
+                        MM,&nbsp; Mike Shaffer&nbsp;&nbsp;&nbsp;&nbsp; blah blah 
+                        :::<BR>&nbsp; '::: blah 
+                        blah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALL RIGHTS RESERVED 
+                        WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blah blah 
+                        :::<BR>&nbsp; '::: blah blah&nbsp; Permission is granted 
+                        to use this code blah blah :::<BR>&nbsp; '::: blah 
+                        blah&nbsp;&nbsp; in your projects, as long as 
+                        this&nbsp;&nbsp;&nbsp;&nbsp; blah blah :::<BR>&nbsp; 
+                        '::: blah blah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; copyright 
+                        notice is included&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        blah blah :::<BR>&nbsp; '::: blah blah blah blah blah 
+                        blah blah blah blah blah blah blah :::<BR>&nbsp; '::: 
+                        blah blah blah blah blah blah blah blah blah blah blah 
+                        blah :::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp; This function gets a specified 
+                        number of bytes from any&nbsp;&nbsp;&nbsp; :::<BR>&nbsp; 
+                        ':::&nbsp; file, starting at the offset (base 
+                        1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp; 
+                        Passed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        flnm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; 
+                        Filespec of file to 
+                        read&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        offset&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; Offset at 
+                        which to start 
+                        reading&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        bytes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; How many 
+                        bytes to 
+                        read&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        function GetBytes(flnm, offset, bytes)</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Dim objFSO<BR>&nbsp;&nbsp;&nbsp;&nbsp; Dim 
+                        objFTemp<BR>&nbsp;&nbsp;&nbsp;&nbsp; Dim 
+                        objTextStream<BR>&nbsp;&nbsp;&nbsp;&nbsp; Dim 
+                        lngSize</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; on 
+                        error resume next</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Set objFSO = 
+                        CreateObject("Scripting.FileSystemObject")<BR>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        <BR>&nbsp;&nbsp;&nbsp;&nbsp; ' First, we get the 
+                        filesize<BR>&nbsp;&nbsp;&nbsp;&nbsp; Set objFTemp = 
+                        objFSO.GetFile(flnm)<BR>&nbsp;&nbsp;&nbsp;&nbsp; lngSize 
+                        = objFTemp.Size<BR>&nbsp;&nbsp;&nbsp;&nbsp; set objFTemp 
+                        = nothing</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        fsoForReading = 1<BR>&nbsp;&nbsp;&nbsp;&nbsp; Set 
+                        objTextStream = objFSO.OpenTextFile(flnm, 
+                        fsoForReading)</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; if 
+                        offset &gt; 0 
+                        then<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strBuff = objTextStream.Read(offset - 
+                        1)<BR>&nbsp;&nbsp;&nbsp;&nbsp; end if</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; if 
+                        bytes = -1 then&nbsp;&nbsp;' Get All!</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        GetBytes = objTextStream.Read(lngSize)&nbsp; 
+                        'ReadAll</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        else</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        GetBytes = objTextStream.Read(bytes)</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        end if</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        objTextStream.Close<BR>&nbsp;&nbsp;&nbsp;&nbsp; set 
+                        objTextStream = nothing<BR>&nbsp;&nbsp;&nbsp;&nbsp; set 
+                        objFSO = nothing</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; end 
+                        function</FONT></P>
+                        <P><BR><FONT face=courier size=2>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp; Functions to convert two bytes 
+                        to a numeric value (long)&nbsp;&nbsp; :::<BR>&nbsp; 
+                        ':::&nbsp; (both little-endian and 
+                        big-endian)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        function lngConvert(strTemp)<BR>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        lngConvert = clng(asc(left(strTemp, 1)) + 
+                        ((asc(right(strTemp, 1)) * 256)))<BR>&nbsp; end 
+                        function</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; function 
+                        lngConvert2(strTemp)<BR>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        lngConvert2 = clng(asc(right(strTemp, 1)) + 
+                        ((asc(left(strTemp, 1)) * 256)))<BR>&nbsp; end 
+                        function</FONT></P>
+                        <P><FONT face=courier size=2><BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp; This function does most of the 
+                        real work. It will attempt&nbsp; :::<BR>&nbsp; 
+                        ':::&nbsp; to read any file, regardless of the 
+                        extension, and will&nbsp;&nbsp;&nbsp; :::<BR>&nbsp; 
+                        ':::&nbsp; identify if it is a graphical 
+                        image.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp; 
+                        Passed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        flnm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; 
+                        Filespec of file to 
+                        read&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; width of 
+                        image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; height of 
+                        image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        depth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; color 
+                        depth (in number of 
+                        colors)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strImageType=&gt; type of image (e.g. GIF, BMP, 
+                        etc.)&nbsp;&nbsp;&nbsp; :::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        function gfxSpex(flnm, width, height, depth, 
+                        strImageType)</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        dim strPNG <BR>&nbsp;&nbsp;&nbsp;&nbsp; dim 
+                        strGIF<BR>&nbsp;&nbsp;&nbsp;&nbsp; dim 
+                        strBMP<BR>&nbsp;&nbsp;&nbsp;&nbsp; dim 
+                        strType<BR>&nbsp;&nbsp;&nbsp;&nbsp; strType = 
+                        ""<BR>&nbsp;&nbsp;&nbsp;&nbsp; strImageType = 
+                        "(unknown)"</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = False</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strPNG = chr(137) &amp; chr(80) &amp; 
+                        chr(78)<BR>&nbsp;&nbsp;&nbsp;&nbsp; strGIF = 
+                        "GIF"<BR>&nbsp;&nbsp;&nbsp;&nbsp; strBMP = chr(66) &amp; 
+                        chr(77)</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strType = GetBytes(flnm, 0, 3)</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; if 
+                        strType = strGIF then&nbsp;&nbsp;&nbsp;&nbsp;' is 
+                        GIF</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strImageType = 
+                        "GIF"<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Width = lngConvert(GetBytes(flnm, 7, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Height 
+                        = lngConvert(GetBytes(flnm, 9, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Depth 
+                        = 2 ^ ((asc(GetBytes(flnm, 11, 1)) and 7) + 
+                        1)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfxSpex 
+                        = True</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        elseif left(strType, 2) = strBMP then&nbsp;&nbsp;' is 
+                        BMP</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strImageType = 
+                        "BMP"<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Width = lngConvert(GetBytes(flnm, 19, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Height 
+                        = lngConvert(GetBytes(flnm, 23, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Depth 
+                        = 2 ^ (asc(GetBytes(flnm, 29, 
+                        1)))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = True</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        elseif strType = strPNG then&nbsp;&nbsp;&nbsp;' Is 
+                        PNG</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strImageType = 
+                        "PNG"<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Width = lngConvert2(GetBytes(flnm, 19, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Height 
+                        = lngConvert2(GetBytes(flnm, 23, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Depth 
+                        = getBytes(flnm, 25, 2)</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select 
+                        case 
+                        asc(right(Depth,1))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        case 
+                        0<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = 2 ^ (asc(left(Depth, 
+                        1)))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = 
+                        True<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        case 
+                        2<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = 2 ^ (asc(left(Depth, 1)) * 
+                        3)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = 
+                        True<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        case 
+                        3<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = 2 ^ (asc(left(Depth, 1)))&nbsp; 
+                        '8<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = 
+                        True<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        case 
+                        4<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = 2 ^ (asc(left(Depth, 1)) * 
+                        2)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = 
+                        True<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        case 
+                        6<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = 2 ^ (asc(left(Depth, 1)) * 
+                        4)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = 
+                        True<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        case 
+                        else<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = -1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        end select</FONT></P>
+                        <P><BR><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp; else</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strBuff = GetBytes(flnm, 0, -1)&nbsp;&nbsp;' Get all 
+                        bytes from 
+                        file<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        lngSize = 
+                        len(strBuff)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        flgFound = 0</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strTarget = chr(255) &amp; chr(216) &amp; 
+                        chr(255)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        flgFound = instr(strBuff, strTarget)</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if 
+                        flgFound = 0 
+                        then<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        exit 
+                        function<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        end if</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        strImageType = 
+                        "JPG"<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        lngPos = flgFound + 
+                        2<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ExitLoop 
+                        = false</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do 
+                        while ExitLoop = False and lngPos &lt; 
+lngSize</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        do while asc(mid(strBuff, lngPos, 1)) = 255 and lngPos 
+                        &lt; 
+                        lngSize<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        lngPos = lngPos + 
+                        1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        loop</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        if asc(mid(strBuff, lngPos, 1)) &lt; 192 or 
+                        asc(mid(strBuff, lngPos, 1)) &gt; 195 
+                        then<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        lngMarkerSize = lngConvert2(mid(strBuff, lngPos + 1, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        lngPos = lngPos + lngMarkerSize&nbsp; + 
+                        1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        else<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        ExitLoop = 
+                        True<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        end if</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        loop<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        '<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ExitLoop = 
+                        False then</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Width = 
+                        -1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Height = 
+                        -1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = -1</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        else</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Height = lngConvert2(mid(strBuff, lngPos + 4, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Width = lngConvert2(mid(strBuff, lngPos + 6, 
+                        2))<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Depth = 2 ^ (asc(mid(strBuff, lngPos + 8, 1)) * 
+                        8)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        gfxSpex = True</FONT></P>
+                        <P><FONT face=courier 
+                        size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end 
+                        if<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        <BR>&nbsp;&nbsp;&nbsp;&nbsp; end if</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; end 
+                        function</FONT></P>
+                        <P><FONT face=courier></FONT>&nbsp;</P>
+                        <P><FONT face=courier size=2>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        ':::&nbsp;&nbsp;&nbsp;&nbsp; Test 
+                        Harness&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        :::<BR>&nbsp; 
+                        ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<BR>&nbsp; 
+                        <BR>&nbsp; ' To test, we'll just try to show all files 
+                        with a .GIF extension in the root of C:</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 'Set objFSO = 
+                        CreateObject("Scripting.FileSystemObject")<BR>&nbsp; 
+                        'Set objF = objFSO.GetFolder("c:\")<BR>&nbsp; 'Set objFC 
+                        = objF.Files</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 'response.write 
+                        "&lt;table border=""0"" 
+cellpadding=""5""&gt;"</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 'For Each f1 in 
+                        objFC<BR>&nbsp; '&nbsp; if instr(ucase(f1.Name), ".GIF") 
+                        then<BR>&nbsp; '&nbsp;&nbsp;&nbsp;&nbsp; response.write 
+                        "&lt;tr&gt;&lt;td&gt;" &amp; f1.name &amp; 
+                        "&lt;/td&gt;&lt;td&gt;" &amp; f1.DateCreated &amp; 
+                        "&lt;/td&gt;&lt;td&gt;" &amp; f1.Size &amp; 
+                        "&lt;/td&gt;&lt;td&gt;"</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp;&nbsp; 
+                        '&nbsp;&nbsp;&nbsp; if gfxSpex(f1.Path, w, h, c, 
+                        strType) = true then<BR>&nbsp;&nbsp; 
+                        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.write w 
+                        &amp; " x " &amp; h &amp; " " &amp; c &amp; " 
+                        colors"<BR>&nbsp; '&nbsp;&nbsp;&nbsp;&nbsp; 
+                        else<BR>&nbsp; 
+                        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        response.write "&amp;nbsp;"<BR>&nbsp; 
+                        '&nbsp;&nbsp;&nbsp;&nbsp; end if</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 
+                        '&nbsp;&nbsp;&nbsp;&nbsp; response.write 
+                        "&lt;/td&gt;&lt;/tr&gt;"</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; '&nbsp; end 
+                        if</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 'Next</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 'response.write 
+                        "&lt;/table&gt;"</FONT></P>
+                        <P><FONT face=courier size=2>&nbsp; 'set objFC = 
+                        nothing<BR>&nbsp; 'set objF = nothing<BR>&nbsp; 'set 
+                        objFSO = nothing<BR>%&gt;</FONT></P>
+                        <P><BR>&nbsp;</P><BR><BR></TD></TR>
+                    <TR>
+                      <TD colSpan=2></TD></TR>
+                    <TR>
+                      <TD align=right class=clsContent colSpan=2>
+                        <FORM action=showDetail.asp?TypeId=7&amp;NewsId=564 
+                        method=post name=form_rating><INPUT name=RatingNewsId 
+                        type=hidden value=564> 
+                        <TABLE border=0 cellPadding=0 cellSpacing=0 
+                        class=clsNewsRating>
+                          <TBODY>
+                          <TR>
+                            <TD class=clsNewsRating><B>Please rate this for 
+                              us</B></TD>
+                            <TD align=right class=clsNewsRating><FONT 
+                              color=#00cc66><I>Poor</I></FONT></TD>
+                            <TD align=middle class=clsNewsRating>1</TD>
+                            <TD align=middle class=clsNewsRating>2</TD>
+                            <TD align=middle class=clsNewsRating>3</TD>
+                            <TD align=middle class=clsNewsRating>4</TD>
+                            <TD align=middle class=clsNewsRating>5</TD>
+                            <TD align=left class=clsNewsRating><I><FONT 
+                              color=#00cc66>Excellent</FONT></I></TD></TR>
+                          <TR>
+                            <TD>&nbsp;</TD>
+                            <TD class=clsNewsRating>Usefulness of Content</TD>
+                            <TD align=middle><INPUT name=rating type=radio 
+                              value=1> </TD>
+                            <TD align=middle><INPUT name=rating type=radio 
+                              value=2> </TD>
+                            <TD align=middle><INPUT name=rating type=radio 
+                              value=3> </TD>
+                            <TD align=middle><INPUT name=rating type=radio 
+                              value=4> </TD>
+                            <TD align=middle><INPUT name=rating type=radio 
+                              value=5> </TD>
+                            <TD><INPUT class=knop name=Submit type=submit value=Submit> 
+                            </TD></TR></TBODY></TABLE></FORM></TD></TR>
+                    <TR>
+                      <TD colSpan=2>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE border=0 cellPadding=0 cellSpacing=0 
+                              width=90>
+                                <TBODY>
+                                <TR 
+                                onclick="GP_AdvOpenWindow('insertNewsReply.asp?NewsId=564','InsertNewsReply','fullscreen=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes',650,400,'center','ignoreLink','',0,'')" 
+                                style="CURSOR: hand">
+                                <TD rowSpan=2><IMG height=24 
+                                src="determinimage pure asp_files/bl_c1.gif" 
+                                width=11></TD>
+                                <TD 
+                                background="determinimage pure asp_files/bl_c2.gif" 
+                                rowSpan=2>&nbsp;</TD>
+                                <TD align=right 
+                                background="determinimage pure asp_files/bl_c2.gif" 
+                                colSpan=2><IMG height=7 
+                                src="determinimage pure asp_files/bl_c3.gif" 
+                                width=56></TD>
+                                <TD rowSpan=2><IMG height=24 
+                                src="determinimage pure asp_files/bl_c5.gif" 
+                                width=22></TD></TR>
+                                <TR>
+                                <TD><IMG height=17 
+                                src="determinimage pure asp_files/bl_c6.gif" 
+                                width=1></TD>
+                                <TD 
+                                background="determinimage pure asp_files/bl_c4.gif" 
+                                noWrap vAlign=top width="100%"><A 
+                                class=TextButtonLight 
+                                href="javascript:GP_AdvOpenWindow('insertNewsReply.asp?NewsId=564','InsertNewsReply','fullscreen=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes',650,400,'center','ignoreLink','',0,'')" 
+                                onmouseover="status='Click here to add your comments';return true"><ACRONYM 
+                                title="Click here to add your comments">Post 
+                                Review</ACRONYM></A></TD></TR></TBODY></TABLE></TD>
+                            <TD></TD></TR></TBODY></TABLE><BR><BR></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD align=middle>
+                  <DIV 
+                  style="FLOAT: left; HEIGHT: 270px; MARGIN-RIGHT: 8px; WIDTH: 270px">
+                  <TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 
+                  class=clsRelatedBlock width="100%">
+                    <TBODY>
+                    <TR align=left vAlign=top>
+                      <TD height=10 width=10><IMG height=10 
+                        src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+                      <TD align=right 
+                      background="determinimage pure asp_files/t_tm.jpg" 
+                      colSpan=2><IMG height=10 
+                        src="determinimage pure asp_files/t_tr.jpg" 
+                    width=141></TD></TR>
+                    <TR align=left vAlign=top>
+                      <TD 
+                        background="determinimage pure asp_files/t_ml.jpg"><IMG 
+                        height=1 src="determinimage pure asp_files/t_ml.jpg" 
+                        width=10></TD>
+                      <TD align=left 
+                      background="determinimage pure asp_files/t_bg.jpg" 
+                      vAlign=top width="100%">
+                        <TABLE border=0 cellPadding=0 cellSpacing=0 
+width="100%">
+                          <TBODY>
+                          <TR class=clsSideBarBlockTitleBack>
+                            <TD class=clsSideBarBlockTitle>Other ASP 
+                          FAQ's</TD></TR>
+                          <TR>
+                            <TD>
+                              <UL class=clsSideBarBlockUL>
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?1260">Invalid 
+                                Class String</A> 
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?3736">How do I 
+                                handle BLOB fields in the Recordset</A> 
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?2144">Formating 
+                                Date/Time values for different National 
+                                Preferences</A> 
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?3737">How do I 
+                                reset the Autonumber to Zero in MSSQL</A> 
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?4340">Display 
+                                Record Count</A> 
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?3891">Delete 
+                                Dynamically Named Folder </A>
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?2070">Write the 
+                                EURO character</A> 
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?2658">How many 
+                                results at one page?</A> 
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?4392">How Do I 
+                                Create a Dynamically Named Folder?</A> 
+                            </LI></UL></TD></TR></TBODY></TABLE></TD>
+                      <TD background="determinimage pure asp_files/t_mr.jpg" 
+                      height=1><IMG height=1 
+                        src="determinimage pure asp_files/t_mr.jpg" 
+                    width=10></TD></TR>
+                    <TR align=left vAlign=top>
+                      <TD height=10 width=10><IMG height=10 
+                        src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+                      <TD align=right 
+                      background="determinimage pure asp_files/t_bm.jpg" 
+                      colSpan=2 vAlign=bottom><IMG height=10 
+                        src="determinimage pure asp_files/t_br.jpg" 
+                    width=10></TD></TR></TBODY></TABLE></DIV>
+                  <DIV 
+                  style="FLOAT: left; HEIGHT: 270px; MARGIN-RIGHT: 8px; WIDTH: 270px">
+                  <TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 
+                  class=clsRelatedBlock width="100%">
+                    <TBODY>
+                    <TR align=left vAlign=top>
+                      <TD height=10 width=10><IMG height=10 
+                        src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+                      <TD align=right 
+                      background="determinimage pure asp_files/t_tm.jpg" 
+                      colSpan=2><IMG height=10 
+                        src="determinimage pure asp_files/t_tr.jpg" 
+                    width=141></TD></TR>
+                    <TR align=left vAlign=top>
+                      <TD 
+                        background="determinimage pure asp_files/t_ml.jpg"><IMG 
+                        height=1 src="determinimage pure asp_files/t_ml.jpg" 
+                        width=10></TD>
+                      <TD align=left 
+                      background="determinimage pure asp_files/t_bg.jpg" 
+                      vAlign=top width="100%">
+                        <TABLE border=0 cellPadding=0 cellSpacing=0 
+width="100%">
+                          <TBODY>
+                          <TR class=clsSideBarBlockTitleBack>
+                            <TD class=clsSideBarBlockTitle>More FAQ's from 
+                              Steve Davis</TD></TR>
+                          <TR>
+                            <TD>
+                              <UL class=clsSideBarBlockUL>
+                                <LI class=clsSideBarBlockBullet><A 
+                                class=clsSideBarBlockLinkEven 
+                                href="http://www.dmxzone.net/go?561">How to 
+                                create unique file name using PureASPupload</A> 
+                                </LI></UL></TD></TR></TBODY></TABLE></TD>
+                      <TD background="determinimage pure asp_files/t_mr.jpg" 
+                      height=1><IMG height=1 
+                        src="determinimage pure asp_files/t_mr.jpg" 
+                    width=10></TD></TR>
+                    <TR align=left vAlign=top>
+                      <TD height=10 width=10><IMG height=10 
+                        src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+                      <TD align=right 
+                      background="determinimage pure asp_files/t_bm.jpg" 
+                      colSpan=2 vAlign=bottom><IMG height=10 
+                        src="determinimage pure asp_files/t_br.jpg" 
+                    width=10></TD></TR></TBODY></TABLE></DIV></TD></TR>
+              <TR>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD background="determinimage pure asp_files/tw_mr.jpg" 
+            height=1><IMG height=1 src="determinimage pure asp_files/tw_mr.jpg" 
+            width=10></TD></TR>
+        <TR align=left vAlign=top>
+          <TD height=10 width=10><IMG height=10 
+            src="determinimage pure asp_files/tw_bl.jpg" width=10></TD>
+          <TD align=right background="determinimage pure asp_files/tw_bm.jpg" 
+          colSpan=2 vAlign=bottom><IMG height=10 
+            src="determinimage pure asp_files/tw_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV>
+<DIV id=rightcontent>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Users Stats</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>Active 
+        Users:&nbsp;169<BR></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Premium Articles</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <UL class=clsSideBarBlockUL>
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?5213">Deleting from Bookmark</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?5210">Working with Files in 
+              PHP</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?5208">Interview with Molly</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?5166">Add Dynamic Data</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?5162">Shiny New MySQL</A> 
+          </LI></UL></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Latest FAQs</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <UL class=clsSideBarBlockUL>
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?5222">Update Scroller Genie 
+              scr</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?5198">Scroller Genie: 
+              Templates</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?5197">Images don't fit in 
+              layer</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?5196">Can Auto-scroll pause?</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?5194">After insert can I edit?</A> 
+              </LI></UL></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Best Rated FAQs</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <UL class=clsSideBarBlockUL>
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?564">Find W&amp;H of image</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?597">Optional Upload?</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?1843">Can I use this EXT 
+              withou</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?3468">Use form fields</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?3473">Use form fields in body</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?3774">Language FullText 
+              catalog</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?3891">Delete Folder</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?4072">Title in new window</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?4095">Adding up using Sum()</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?4175">Multiple directories</A> 
+              </LI></UL></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Most Read FAQs</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <UL class=clsSideBarBlockUL>
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?476">Access 2000 Error</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?492">ASP Timeout</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?423">Calling an Oracle SP</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?477">Enctype Error</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?630">Close and Refresh Parent</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?3821">Pure ASP Upload: ActiveX 
+</A>
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?2213">Auto Window Print</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?312">How to make ADO Con Str</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLinkEven 
+              href="http://www.dmxzone.net/go?1091">What instead 
+              Request.Form</A> 
+              <LI class=clsSideBarBlockBullet><A class=clsSideBarBlockLink 
+              href="http://www.dmxzone.net/go?299">UltraDev Technical FAQ 
+              </A></LI></UL></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE>
+<SCRIPT>
+function getRadioValue (radioButtonOrGroup) {
+  var value = null;
+  if (radioButtonOrGroup.length) { // group 
+    for (var b = 0; b < radioButtonOrGroup.length; b++)
+      if (radioButtonOrGroup[b].checked)
+        value = radioButtonOrGroup[b].value;
+  }
+  else if (radioButtonOrGroup.checked)
+    value = radioButtonOrGroup.value;
+  return value;
+}
+</SCRIPT>
+
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Featured News</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <DIV align=center><A 
+            href="http://www.dmxzone.net/go?4970">Accessibility Evangelist 
+            </A><BR><BR></DIV><BR>
+            <P>Ian Lloyd of the Web Standards Project interviews Bruce Lawson 
+            (the newest DMXzone team member) about his role in popularising Web 
+            Standards and Accessibility at the late lamented glasshaus 
+            publishing house. It's at the <A 
+            href="http://www.accessify.com/articles/an-interview-with-bruce-lawson.asp" 
+            target=_blank>Accessify site</A></P>
+            <P>Bruce joins DMXzone as our Premium Articles editor. He no longer 
+            wears his fake moustache.</P></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE><BR>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Featured Extension</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <DIV align=center><A href="http://www.dmxzone.net/go?4145">Mega 
+            Bundle</A><BR><BR></DIV><BR>
+            <P align=center><A href="http://www.dmxzone.net/go?4145"><IMG 
+            border=0 
+            src="determinimage pure asp_files/asppiccolo_megabundle.jpg"></A></P>
+            <P>The best selling extensions from DMXzone! Now available in a 
+            single bundle! <FONT color=#ff0000>Save more than 
+            <STRONG>30%</STRONG></FONT>!</P>
+            <P>
+            <UL>
+              <LI>Pure ASP Upload 
+              <LI>Pure ASP Add-On Pack 
+              <LI>Smart Image Processor 
+              <LI>Unzip Processor 
+              <LI><FONT color=#000000>File Genie</FONT> 
+              <LI><FONT color=#000000>Advanced Open Window 
+        3</FONT></LI></UL></TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE><BR>
+<TABLE bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 class=clsSideBar 
+width=181>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_tl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_tm.jpg" 
+      colSpan=2><IMG height=10 src="determinimage pure asp_files/t_tr.jpg" 
+      width=141></TD></TR>
+  <TR align=left vAlign=top>
+    <TD background="determinimage pure asp_files/t_ml.jpg"><IMG height=1 
+      src="determinimage pure asp_files/t_ml.jpg" width=10></TD>
+    <TD align=left background="determinimage pure asp_files/t_bg.jpg" vAlign=top 
+    width="100%">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+        <TBODY>
+        <TR class=clsSideBarBlockTitleBack>
+          <TD class=clsSideBarBlockTitle>Poll</TD></TR>
+        <TR>
+          <TD class=clsSideBarBlockRondText>
+            <DIV align=center><A href="http://www.dmxzone.net/go?5153">Developer 
+            or Designer?</A><BR><BR></DIV><BR>
+            <P>There are web developers and web designers. What are you?&nbsp;A 
+            designer or a developer, or maybe both? Let us know.</P>
+            <FORM action=showDetail.asp method=post name=form_side_vote><INPUT 
+            name=TypeId type=hidden value=11> <INPUT name=NewsId type=hidden 
+            value=5153> 
+            <TABLE border=0 cellPadding=0 cellSpacing=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=1> 
+                </TD>
+                <TD style="FONT-SIZE: 70%">I'm a designer! Code is for 
+                  geeks.<BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=2> 
+                </TD>
+                <TD style="FONT-SIZE: 70%">I'm a developer! Design is just 
+                  pretty extras.<BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=3> 
+                </TD>
+                <TD style="FONT-SIZE: 70%">I love to code, but have to design 
+                  as well. <IMG align=middle border=0 
+                  src="determinimage pure asp_files/icon_smile_sad.gif"><BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=4> 
+                </TD>
+                <TD style="FONT-SIZE: 70%">I love to design, but must do some 
+                  coding <IMG align=middle border=0 
+                  src="determinimage pure asp_files/icon_smile_sad.gif"><BR>
+              <TR>
+                <TD vAlign=baseline><INPUT name=NewsVote type=radio value=5> 
+                </TD>
+                <TD style="FONT-SIZE: 70%">I'm a true renaissance (wo)man, 
+                  happy with art and science. Just call me 
+              "Leonardo"<BR></TD></TR></TBODY></TABLE><BR><INPUT class=knop name=Submit onclick="if (!getRadioValue(document.form_side_vote.NewsVote)) {alert('Please choose an option to vote!');return false}" type=submit value=Vote> 
+            </FORM><A 
+            href="http://www.dmxzone.net/showDetail.asp?TypeId=11&amp;NewsId=5153&amp;ShowVotes=true">View 
+            Results</A> </TD></TR></TBODY></TABLE></TD>
+    <TD background="determinimage pure asp_files/t_mr.jpg" height=1><IMG 
+      height=1 src="determinimage pure asp_files/t_mr.jpg" width=10></TD></TR>
+  <TR align=left vAlign=top>
+    <TD height=10 width=10><IMG height=10 
+      src="determinimage pure asp_files/t_bl.jpg" width=10></TD>
+    <TD align=right background="determinimage pure asp_files/t_bm.jpg" colSpan=2 
+    vAlign=bottom><IMG height=10 src="determinimage pure asp_files/t_br.jpg" 
+      width=10></TD></TR></TBODY></TABLE><BR></DIV>
+<P align=center class=clsFooter><SMALL>Copyright © 2001-2003 <A 
+href="http://www.dmxzone.com/">DMXzone.com</A>, All Rights Reserved. <BR>Content 
+Management System by <A href="http://www.dmxzone.com/bannerClick.asp?AdId=49" 
+target=_blank>Dynamic Zones</A><BR>Design by <A 
+href="http://www.dmxzone.com/bannerClick.asp?AdId=50" 
+target=_blank>Alion</A><BR><A href="http://www.dmxzone.com/">DMXzone.com</A> <A 
+href="http://www.dmxzone.net/privacy.asp#liability">liability</A>, trademark, <A 
+href="http://www.dmxzone.net/privacy.asp#copyright">document use</A> and <A 
+href="http://www.dmxzone.net/privacy.asp#software">software licensing rules</A> 
+apply. <BR>Your interactions with this site are in accordance with our public <A 
+href="http://www.dmxzone.net/privacy.asp#privacy">privacy</A> statements. 
+</SMALL></P>
+<SCRIPT>UD_resize();</SCRIPT>
+</BODY></HTML>

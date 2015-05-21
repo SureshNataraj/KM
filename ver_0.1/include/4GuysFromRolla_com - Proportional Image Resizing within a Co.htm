@@ -1,0 +1,831 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0052)http://www.4guysfromrolla.com/webtech/011201-1.shtml -->
+<HTML><HEAD><TITLE>4GuysFromRolla.com - Proportional Image Resizing within a Constrained Area</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<STYLE type=text/css>A:link {
+	TEXT-DECORATION: none
+}
+A:visited {
+	TEXT-DECORATION: none
+}
+A:active {
+	TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+</STYLE>
+<LINK href="/favicon.ico" rel="Bookmark Icon">
+<META 
+content="4GuysFromRolla.com - Proportional Image Resizing within a Constrained Area" 
+name=title>
+<META content=2001-01-12 name=date>
+<META 
+content="This article, by <a href='mailto:mshaffer@nkn.net'>Mike Shaffer</a>, demonstrates how to proportionally resize an image in a specified space.  For example, if you have an image that is, say 100 pixels wide and 80 pixels tall, and you need to fit it into a table cell no larger than, say, 50x50 pixels, you <i>could</I> resize it to 50x50 by explicitly setting the <code>HEIGHT</code> and <CODE>WIDTH</CODE> parameters of the <code>IMG</code> tag.  However, in such a case, the image would be out of proportion (stretched taller than it should be).  In this article, Mike shares a function that will maintain the image's aspect ratio when resizing an image with explicit <code>HEIGHT</code> and <CODE>WIDTH</CODE> settings!" 
+name=description>
+<META content="Windows Technology" name=channel>
+<META content="Mike Shaffer" name=author>
+<META content="ASP Web technology Microsoft" name=keywords>
+<META content="ASP Information" name=section><BASEFONT face="arial, verdana" 
+size=2>
+<META content="MSHTML 5.00.3502.5390" name=GENERATOR></HEAD>
+<BODY bgColor=white link=#008080 text=black vLink=#008080>
+<CENTER>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><A href="http://www.4guysfromrolla.com/"><IMG 
+      alt="4GuysFromRolla.com - All this and it counts as work!" border=0 
+      height=44 
+      src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/newbanner.gif" 
+      width=443></A> </TD>
+    <TD>
+      <TABLE cellPadding=0 cellSpacing=0>
+        <TBODY>
+        <TR>
+          <TD><A href="http://www.4guysfromrolla.com/webtech/index.shtml"><IMG 
+            alt="ASP Articles" border=0 height=15 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/asp.gif" 
+            width=128></A> <A href="http://www.aspmessageboard.com/"><IMG 
+            alt="Web Technology Message Board" border=0 height=15 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/messageboard.gif" 
+            width=128></A> </TD></TR>
+        <TR>
+          <TD><A href="http://www.4guysfromrolla.com/search"><IMG 
+            alt="Search 4Guys!" border=0 height=15 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/search.gif" 
+            width=128></A> <A href="http://aspnet.4guysfromrolla.com/"><IMG 
+            alt=ASP.NET border=0 height=15 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/aspnet.gif" 
+            width=128></A> </TD></TR>
+        <TR>
+          <TD><A href="http://www.aspfaqs.com/aspfaqs/"><IMG alt=ASPFAQs.com 
+            border=0 height=15 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/aspfaqs.gif" 
+            width=128></A> <A 
+            href="http://www.4guysfromrolla.com/feedback.shtml"><IMG 
+            alt=Feedback border=0 height=15 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/feedback.gif" 
+            width=128></A> </TD></TR>
+        <TR>
+          <TD><IMG height=8 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/allthis.gif" 
+            width=163> </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<CENTER><A href="http://www.cdxpo.com/"><IMG alt="Computer Digital Expo" 
+border=0 height=25 
+src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/cdxpo-top.gif" 
+vspace=5 width=750></A> </CENTER><BR>
+<TABLE bgColor=black cellSpacing=0 width="98%">
+  <TBODY>
+  <TR>
+    <TD>
+      <CENTER>
+      <TABLE bgColor=#008080 border=0 cellPadding=10 cellSpacing=0 
+        width="100%"><TBODY>
+        <TR>
+          <TD align=middle colSpan=2 width="100%">
+            <SCRIPT language=JavaScript>
+
+			<!-- This script and many more are available free online at -->
+			<!-- The JavaScript Source!! http://javascript.internet.com -->
+			<!-- Original:  David Sosnowski (support@codefoot.com) -->
+			<!-- Web Site:  http://www.codefoot.com -->
+
+			<!-- Begin
+			function blockError(){return true;}
+			window.onerror = blockError;
+			//  End -->
+			</SCRIPT>
+
+            <SCRIPT language=javascript 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/4guysads.js"></SCRIPT>
+<!-- 468x60-1 ad tag -->
+            <SCRIPT language=javascript>
+<!--
+OAS_AD('468x60-1');
+//-->
+</SCRIPT>
+            <NOSCRIPT><A 
+            href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!468x60-1"><IMG 
+            border=0 
+            src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/www.4guysfromrolla.gif"></A> 
+            </NOSCRIPT><!-- /468x60-1 ad tag --></TD></TR>
+        <TR>
+          <TD vAlign=top width="20%">
+            <TABLE border=0 cellPadding=0 cellSpacing=0 frame=box rules=rows 
+            width="98%">
+              <TBODY>
+              <TR>
+                <TD align=left bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/lcorner.gif" 
+                  width=4></TD>
+                <TD align=middle bgColor=black><A 
+                  href="http://www.4guysfromrolla.com/new"><FONT 
+                  color=white><B>Site Index</B></FONT></A></TD>
+                <TD align=right bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/rcorner.gif" 
+                  width=4></TD></TR>
+              <TR>
+                <TD bgColor=white colSpan=3>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/"><FONT 
+                  size=2><I>Recent Articles</I></FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/index_asp.shtml"><FONT 
+                  size=2>All Articles</FONT></A> | <A 
+                  href="http://www.4guysfromrolla.com/webtech/LearnMore/ASPPlus.asp"><FONT 
+                  size=2>ASP.NET Info</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/top10/"><FONT 
+                  size=2>ASP Coding Tips</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/faq/faqtoc.shtml"><FONT 
+                  size=2>ASP F.A.Q.</FONT></A> | <A 
+                  href="http://www.aspfaqs.com/aspfaqs/"><FONT 
+                  size=2>ASPFAQs.com</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://4guysfromrolla.aspin.com/"><FONT size=2>ASP 
+                  Resources</FONT></A> | <A 
+                  href="http://4guysfromrolla.411asp.net/"><FONT size=2>ASP.NET 
+                  Resources</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/LearnMore/"><FONT 
+                  size=2>Related Web Technologies</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/search/"><FONT 
+                  size=2>Search</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/tips/"><FONT 
+                  size=2>User Tips!</FONT></A><BR><BR>
+                  <P>
+                  <CENTER><FONT size=2><U><B>Please Visit our 
+                  Partners</B></U></FONT><BR>
+                  <CENTER><!-- 125x125_ ad tag-->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('125x125-1');
+//-->
+</SCRIPT>
+                  <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@125x125-1,125x125-2,125x125-3,468x60-1,468x60-2,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!125x125-1"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(1).gif"></A> 
+                  </NOSCRIPT><!-- /125x125_ ad tag--></CENTER>
+                  <HR noShade>
+
+                  <CENTER><!-- 125x125_ ad tag-->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('125x125-3');
+//-->
+</SCRIPT>
+                  <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@125x125-1,125x125-2,125x125-3,468x60-1,468x60-2,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!125x125-3"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(2).gif"></A> 
+                  </NOSCRIPT><!-- /125x125_ ad tag--></CENTER>
+                  <HR noShade>
+                  </CENTER><BR></TD></TR></TBODY></TABLE><BR>
+            <TABLE border=0 cellPadding=0 cellSpacing=0 frame=box rules=rows 
+            width="98%">
+              <TBODY>
+              <TR>
+                <TD align=left bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/lcorner.gif" 
+                  width=4></TD>
+                <TD align=middle bgColor=black><A 
+                  href="http://www.4guysfromrolla.com/search/"><FONT 
+                  color=white><B>Search</B></FONT></A></TD>
+                <TD align=right bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/rcorner.gif" 
+                  width=4></TD></TR>
+              <TR>
+                <TD bgColor=white colSpan=3><!-- SEARCH FORM -->
+                  <FORM action=http://search.internet.com/query 
+                  method=post><FONT size=2><B>
+                  <CENTER>Search the Site</CENTER></B></FONT><INPUT 
+                  name=IC_Summary type=hidden value=1> <INPUT 
+                  name=IC_StartNumber type=hidden value=0> <INPUT 
+                  name=IC_BatchSize type=hidden value=10> <INPUT 
+                  name=IC_RelevanceThreshold type=hidden value=50> <INPUT 
+                  name=IC_QueryDatabase type=hidden 
+                  value=www.4guysfromrolla.com> <INPUT name=IC_QueryText 
+                  size=10> <INPUT name=SUBMIT type=submit value=Search> <INPUT onclick="location.href='http://www.google.com/search?q=site:4guysfromrolla.com+' + IC_QueryText.value;" title="Search 4GuysFromRolla.com using Google!" type=button value="Search via Google"> 
+                  </FORM>
+                  <CENTER><FONT size=2>[<A 
+                  href="http://www.google.com/microsoft.html">Search for 
+                  Microsoft Resources on Google</A>]</FONT> </CENTER><!-- END OF SEARCH FORM --></TD></TR></TBODY></TABLE><BR>
+            <TABLE border=0 cellPadding=0 cellSpacing=0 frame=box rules=rows 
+            width="98%">
+              <TBODY>
+              <TR>
+                <TD align=left bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/lcorner.gif" 
+                  width=4></TD>
+                <TD align=middle bgColor=black><FONT 
+                  color=white><B>Resources</B></FONT> </TD>
+                <TD align=right bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/rcorner.gif" 
+                  width=4></TD></TR>
+              <TR>
+                <TD bgColor=white colSpan=3><FONT size=2><U><B><FONT 
+                  size=2>Sections:</FONT></B></U><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.15seconds.com/book/default.htm"><FONT 
+                  size=2>Book Reviews</FONT></A> | <A 
+                  href="http://www.4guysfromrolla.com/webtech/chapters/"><FONT 
+                  size=2>Sample Chapters</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/amb/"><FONT 
+                  size=2>Commonly Asked MessageBoard 
+                  Questions</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/aspnews.asp"><FONT 
+                  size=2>Headlines from 
+                  ASPWire.com</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/111599-1.shtml"><FONT 
+                  size=2>JavaScript Tutorials</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://communities2.microsoft.com/home/console.aspx?siteid=34000003"><FONT 
+                  size=2>MSDN Communities Hub</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/WebWeekly/"><FONT 
+                  size=2>Newsletter</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/officialdocs.shtml"><FONT 
+                  size=2>Official Docs</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/LearnMore/Security.asp"><FONT 
+                  size=2>Security</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/sqlguru/"><FONT 
+                  size=2>Stump the SQL Guru!</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://webhost.thelist.com/"><FONT size=2>Web 
+                  Hosts</FONT></A><BR><!--&nbsp;&nbsp;-<a HREF="/webtech/hosts.shtml"><font SIZE="2">Web Hosts</font></a> | <a HREF="http://www.aspfaqs.com/aspfaqs/ShowFAQ.asp?FAQID=144"><font SIZE="2"><i>Free</i> Web Hosting</font></a><br>-->&nbsp;&nbsp;-<A 
+                  href="http://www.aspmessageboard.com/"><FONT size=2>Web 
+                  Message Board</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/webtech/xml.shtml"><FONT 
+                  size=2>XML</FONT></A><BR><BR><U><B><FONT 
+                  size=2>Information:</FONT></B></U><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/advertise.shtml"><FONT 
+                  size=2>Advertise</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/feedback.shtml"><FONT 
+                  size=2>Feedback</FONT></A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/authors.shtml"><FONT 
+                  size=2>Author an 
+            Article</FONT></A><BR></FONT></TD></TR></TBODY></TABLE><BR>
+            <TABLE border=0 cellPadding=0 cellSpacing=0 frame=box rules=rows 
+            width="98%">
+              <TBODY>
+              <TR>
+                <TD align=left bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/lcorner.gif" 
+                  width=4></TD>
+                <TD align=middle bgColor=black><A 
+                  href="http://www.internet.com/"><FONT 
+                  color=white><B>internet.com</B></FONT></A></TD>
+                <TD align=right bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/rcorner.gif" 
+                  width=4></TD></TR>
+              <TR>
+                <TD bgColor=white colSpan=3><FONT size=2>
+                  <TABLE border=0 cellPadding=0 cellSpacing=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG border=0 height=1 
+                        src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/spacer.gif" 
+                        width=12></TD>
+                      <TD><FONT size=-1><A class=icomtb 
+                        href="http://www.internet.com/sections/news.html">Internet 
+                        News</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/stocks.html">Internet 
+                        Investing</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/it.html">IT</A><BR><A 
+                        class=icomtb 
+                        href="http://www.internet.com/sections/win.html">Windows 
+                        Technology</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/linux.html">Linux/Open 
+                        Source</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/webdev.html">Developer</A><BR><A 
+                        class=icomtb 
+                        href="http://www.internet.com/sections/marketing.html">Interactive 
+                        Marketing</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/xsp.html">xSP 
+                        Resources</A> <BR><A class=icomtb 
+                        href="http://www.internet.com/sections/sb.html">Small 
+                        Business</A> <BR><A class=icomtb 
+                        href="http://www.internet.com/sections/wireless.html">Wireless 
+                        Internet</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/downloads.html">Downloads</A><BR><A 
+                        class=icomtb 
+                        href="http://www.internet.com/sections/resources.html">Internet 
+                        Resources</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/lists.html">Internet 
+                        Lists</A><BR><A class=icomtb 
+                        href="http://www.internet.com/sections/international.html">International</A><BR><A 
+                        class=icomtb 
+                        href="http://www.internet.com/sections/earthweb.html">EarthWeb</A><BR><A 
+                        class=icomtb 
+                        href="http://www.internet.com/sections/careers.html">Career 
+                        Resources</A><BR><BR><A class=icomtb 
+                        href="http://search.internet.com/">Search 
+                        internet.com</A><BR><A class=icomtb 
+                        href="http://www.internet.com/mediakit/">Advertise</A><BR><A 
+                        class=icomtb 
+                        href="http://www.internet.com/corporate/">Corporate 
+                        Info</A><BR><A class=icomtb 
+                        href="http://e-newsletters.internet.com/">Newsletters</A><BR><A 
+                        class=icomtb 
+                        href="http://e-newsletters.internet.com/mailinglists.html">E-mail 
+                        Offers</A><BR></FONT></TD></TR></TBODY></TABLE><BR><!-- cpX ad tags -->&nbsp;&nbsp;<!-- cp1 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp1');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp1"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(3).gif"></A> 
+                  </NOSCRIPT><!-- /cp1 ad tag --><BR>&nbsp;&nbsp;<!-- cp2 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp2');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp2"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(4).gif"></A> 
+                  </NOSCRIPT><!-- /cp2 ad tag --><BR>&nbsp;&nbsp;<!-- cp3 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp3');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp3"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(5).gif"></A> 
+                  </NOSCRIPT><!-- /cp3 ad tag --><BR>&nbsp;&nbsp;<!-- cp4 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp4');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp4"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(6).gif"></A> 
+                  </NOSCRIPT><!-- /cp4 ad tag --><BR>&nbsp;&nbsp;<!-- cp5 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp5');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp5"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(7).gif"></A> 
+                  </NOSCRIPT><!-- /cp5 ad tag --><BR>&nbsp;&nbsp;<!-- cp6 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp6');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp6"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(8).gif"></A> 
+                  </NOSCRIPT><!-- /cp6 ad tag --><BR>&nbsp;&nbsp;<!-- cp7 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp7');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp7"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(9).gif"></A> 
+                  </NOSCRIPT><!-- /cp7 ad tag --><BR>&nbsp;&nbsp;<!-- cp8 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp8');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp8"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(10).gif"></A> 
+                  </NOSCRIPT><!-- /cp8 ad tag --><BR>&nbsp;&nbsp;<!-- cp9 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp9');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp9"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(11).gif"></A> 
+                  </NOSCRIPT><!-- /cp9 ad tag --><BR>&nbsp;&nbsp;<!-- cp10 ad tag -->
+                  <SCRIPT language=javascript>
+<!--
+OAS_AD('cp10');
+//-->
+</SCRIPT>
+                   <NOSCRIPT><A 
+                  href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!cp10"><IMG 
+                  border=0 
+                  src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(12).gif"></A> 
+                  </NOSCRIPT><!-- /cp10 ad tag --><BR><!-- /cpX ad tags --><BR><BR>
+                  <CENTER>
+                  <P>
+                  <SCRIPT language=javascript> 
+function SetFormAction() {
+ newLocation = "http://hardwarecentral.dealtime.com/xKW-" + document.frmGSRequest.keyword.value + "/NS-1/linkin_id-3011699/GS.html";
+ document.location.href = newLocation;
+ return;
+}
+</SCRIPT>
+                  <LINK 
+                  href="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/style.css" 
+                  rel=stylesheet type=text/css>
+                  <TABLE bgColor=#000000 border=0 cellPadding=2 cellSpacing=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE bgColor=#ffffcc border=0 cellPadding=2 
+                        cellSpacing=0 width=125>
+                          <TBODY>
+                          <TR>
+                            <TD align=middle><IMG alt="" border=0 
+                              src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/hc_logo.gif"> 
+                              <BR><FONT class=normal color=#4d4d4d><B>Compare 
+                              products, prices, and stores at Hardware 
+                              Central!</B></FONT> </TD></TR>
+                          <TR>
+                            <TD align=middle class=norm><BR><B><A 
+                              href="http://hardwarecentral.dealtime.com/BannerIn/1,2844,,00.html?linkin_id=3011679&amp;nFormId=38733-72-1&amp;path=%2FPages%2FCategoryV2">Computers</A></B><BR><A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Desktops~linkin_id-3011680">Desktops</A>, 
+                              <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Notebooks_Mac~linkin_id-3011681">Mac</A> 
+                              &amp; <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-PC_Notebooks~linkin_id-3011682">PC 
+                              Notebooks</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Monitors~linkin_id-3011683">Monitors</A>, 
+                              <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Network_Adapters~linkin_id-3011684">Network 
+                              Adapters</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Firewalls~linkin_id-3011685">Firewalls</A>, 
+                              <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Random_Access_Memory~linkin_id-3011686">RAM</A>, 
+                              <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Networking_Hubs_and_Switches~linkin_id-3011687">Networking 
+                              Hubs &amp; Switches</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Network_Accessories~linkin_id-3011688">Network 
+                              Accessories</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Network_Cables~linkin_id-3011689">Network 
+                              Cables</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/BannerIn/1,2844,,00.html?linkin_id=3011690&amp;nFormId=38733-72-1&amp;path=%2FPages%2FCategoryV2">more</A>...<BR><BR><B><A 
+                              href="http://hardwarecentral.dealtime.com/BannerIn/1,2844,,00.html?linkin_id=3011691&amp;nFormId=38863-368-1&amp;path=%2FPages%2FCategoryV2C">Software</A></B><BR><A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Network_Management_Tools~linkin_id-3011692">Network 
+                              Management Tools</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Programming_Tools~linkin_id-3011693">Programming 
+                              Tools</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Internet_and_Communication_Applications~linkin_id-3011694">Internet 
+                              &amp; Communication Applications</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Software_Suites~linkin_id-3011695">Software 
+                              Suites</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Operating_Systems~linkin_id-3011696">Operating 
+                              Systems</A>, <A 
+                              href="http://hardwarecentral.dealtime.com/BannerIn/1,2844,,00.html?linkin_id=3011697&amp;nFormId=38863-368-1&amp;path=%2FPages%2FCategoryV2C">more</A>...<BR>
+                              <P></P></TD></TR>
+                          <TR>
+                            <FORM method=get name=frmGSRequest 
+                            onsubmit="javascript:SetFormAction();return false;">
+                            <TD align=middle class=normal vAlign=top>Get the 
+                              best price on <A 
+                              href="http://hardwarecentral.dealtime.com/xPP-Network_Management_Tools~KW-veritas_backup_exec_for_windows_servers~CR-1~linkin_id-3011698">Veritas 
+                              Backup Exec For Windows Servers</A> or search for 
+                              other IT Management tools<BR><BR><INPUT 
+                              name=keyword size=9><BR><BR><INPUT border=0 
+                              src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\search(1).gif" 
+                              type=image><BR><BR></TD></TR></FORM></TBODY></TABLE></TD></TR></TBODY></TABLE></CENTER><BR></FONT></P></TD></TR></TBODY></TABLE><BR>
+            <TABLE border=0 cellPadding=0 cellSpacing=0 frame=box rules=rows 
+            width="98%">
+              <TBODY>
+              <TR>
+                <TD align=left bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/lcorner.gif" 
+                  width=4></TD>
+                <TD align=middle bgColor=black><A 
+                  href="http://www.aspfaqs.com/ASPScripts/Goto.asp?ID=23"><FONT 
+                  color=white><B>Windows Internet Technology</B></FONT></A></TD>
+                <TD align=right bgColor=black vAlign=top><IMG height=4 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/rcorner.gif" 
+                  width=4></TD></TR>
+              <TR>
+                <TD bgColor=white colSpan=3><FONT size=2>Check out these Web 
+                  sites for articles, tutorials, FAQs, and code on ASP and 
+                  related technologies!
+                  <HR noShade width="75%">
+                   &nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=26">15Seconds.com</A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=24">ASP101.com</A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=29">ASPFAQs.com</A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=25">ASPMessageboard.com</A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=27">ASPWire.com</A><BR>&nbsp;&nbsp;-<A 
+                  href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=30">Swynk.com</A><BR>
+                  <HR noShade width="75%">
+
+                  <CENTER>[<A 
+                  href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=23"><I>Complete 
+                  List of Sites</I></A>] 
+          </CENTER></FONT></TD></TR></TBODY></TABLE><BR></TD>
+          <TD vAlign=top>
+            <TABLE border=0 cellPadding=3 cellSpacing=0 frame=box rules=rows 
+            width="98%">
+              <TBODY>
+              <TR>
+                <TD bgColor=black><A 
+                  href="http://www.4guysfromrolla.com/webtech/"><FONT 
+                  color=white><B>Web Technology</B></FONT></A></TD>
+                <TD align=right bgColor=black width="50%"><A 
+                  href="http://www.internet.com/"><IMG 
+                  alt="Internet.com - The Internet and IT Network" border=0 
+                  height=24 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/icom.gif" 
+                  width=128></A> </TD></TR>
+              <TR>
+                <TD bgColor=white colSpan=2><A 
+                  href="http://www.4guysfromrolla.com/ASPscripts/ShareURL.asp"><IMG 
+                  align=left alt="Share this Article with a Friend!" border=1 
+                  height=32 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/email.gif" 
+                  width=32> </A><A 
+                  href="http://www.4guysfromrolla.com/ASPscripts/PrintPage.asp?REF=/webtech/011201-1.shtml"><IMG 
+                  align=right alt="Print this Page!" border=1 height=34 
+                  src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/printer.gif" 
+                  width=34> </A><!--content_start-->
+                  <CENTER><FONT size=+2><B>Proportional Image Resizing within a 
+                  Constrained Area </B></FONT><BR><FONT size=+1><I>By <A 
+                  href="mailto:mshaffer@nkn.net">Mike Shaffer</A> 
+                  </I></FONT></CENTER>
+                  <P>
+                  <HR>
+
+                  <P><STRONG>History</STRONG><BR>The IMGSZ code presented in my 
+                  earlier article, <A 
+                  href="http://www.4guysfromrolla.com/webtech/050300-1.shtml">Determining 
+                  Image Properties in ASP</A>, was written in response to my 
+                  need to be able to fit images proportionally within a given 
+                  area. My client had asked me to develop a photo gallery 
+                  application for their site, and the photo gallery was to 
+                  display photos surrounded by a complex graphical 'photo album' 
+                  motif. As a result, all photos (regardless of their original 
+                  size) needed to 'fit' within a defined pixelspace. (For 
+                  information on creating a simple photo gallery, be sure to 
+                  check out: <A 
+                  href="http://www.4guysfromrolla.com/webtech/102500-1.shtml">Creating 
+                  a Picture Gallery using the Content Linking Component</A>!) 
+                  <P>Many questions ensued: So how would I accomplish that 
+                  within HTML? Would I need to buy a component? And is 
+                  'pixelspace' even a real word? Although I mentioned the 
+                  possibility of enhancing the IMGSZ routines to allow for 
+                  proportional resize, I left it up to the readers of that 
+                  original article to enhance those routines to do the 
+                  propertional sizing. However, <I>so many</I> of you have asked 
+                  for the resizing routine that I am pleased (relieved?) to 
+                  offer it here now. 
+                  <P><STRONG>Why Do I Need It?</STRONG><BR>If you are just 
+                  learning HTML (or any of its younger variants) you already 
+                  know that the <CODE>IMG</CODE> tag has <CODE>HEIGHT</CODE> and 
+                  <CODE>WIDTH</CODE> properties that can be used to force an 
+                  image to a particular size. However, it has no easy way to do 
+                  a proportional resize that fits in a desired area. For 
+                  example, let's say you're showing images in a table for an 
+                  on-line product catalog. To make things look nice, you're 
+                  defining the size of the image presented to 100x75 pixels. So 
+                  you may decide to use <CODE>WIDTH="100" HEIGHT="75"</CODE> in 
+                  your <CODE>IMG</CODE> tag for each picture. What will happen 
+                  is that images may get squashed or stretched in ways that you 
+                  (and your customers) do not find pleasing. This IMGSZ add-on 
+                  function will allow you to overcome that problem. 
+                  <P><STRONG>How Does It Work?</STRONG><BR>The 
+                  <CODE>ImageResize</CODE> function is passed an image filename, 
+                  a maximum width and a maximum height. The function returns 
+                  either a <CODE>HEIGHT=xxx</CODE> or a <CODE>WIDTH=xxx</CODE> 
+                  string that you embed in your IMG tag to provide the 
+                  proportional resize. 
+                  <P><STRONG>So How Do I Use It?</STRONG><BR>Using the function 
+                  can be as simple as embedding a function call in your 
+                  <CODE>IMG</CODE> tag. For example, the following code will 
+                  present an image proportionally in a 100x75 pixel area: 
+                  <P>
+                  <TABLE border=0 width="95%">
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=#cccccc width="100%"><CODE>response.write 
+                        "&lt;img src=""graphic.gif"" " &amp; 
+                        ImageResize(strImageName, 100, 75) &amp; "&gt;" 
+                      </CODE></TD></TR></TBODY></TABLE>
+                  <P>The parameters passed to the function are as follows: 
+                  <P>
+                  <TABLE align=center border=1 cellSpacing=1 width="75%">
+                    <TBODY>
+                    <TR>
+                      <TH colSpan=2><CODE>ImageResize</CODE> Parameters</TH></TR>
+                    <TR>
+                      <TH>Property</TH>
+                      <TH>Description</TH></TR>
+                    <TR>
+                      <TD><CODE>strImageName</CODE></TD>
+                      <TD>The actual filename (on the server's drives) of the 
+                        image you will display</TD></TR>
+                    <TR>
+                      <TD><CODE>intDesiredWidth</CODE></TD>
+                      <TD>The width constraint</TD></TR>
+                    <TR>
+                      <TD><CODE>intDesiredHeight</CODE></TD>
+                      <TD>The height constraint</TD></TR></TBODY></TABLE>
+                  <P>As a further example, let's look at some simple test code. 
+                  This code will look at your server's <CODE>C:\</CODE> drive, 
+                  root directory, and display all GIF images that it finds there 
+                  in a table. The images will be proportionally resized to fit 
+                  within a 75x45 pixel area. Be sure to <A 
+                  href="http://www.4guysfromrolla.com/demos/PropResizeTest.asp">view 
+                  the live demo</A>! 
+                  <P>
+                  <TABLE border=0 width="95%">
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=#cccccc width="100%"><CODE><PRE>&lt;%
+   ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   ':::                                                   :::
+   ':::  SCRIPT:   testpropresize.asp                     :::
+   ':::  AUTHOR:   shaffer                                :::
+   ':::  DATE:     11-Jan-01                              :::
+   ':::  PURPOSE:  Test/show the operation of the resize  :::
+   ':::            (proportional) function                :::
+   ':::                                                   :::
+   ':::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+%&gt;
+  &lt;!--#INCLUDE FILE='imgsz.asp'--&gt;
+  &lt;!--#INCLUDE FILE='propresize.asp'--&gt;
+&lt;%
+' To test, we'll just try to show all files with a .GIF
+' extension in the root of C: by fitting them to a common
+' area (75 pixels x 45 pixels)
+ 
+dim objFSO, objF, objFC  
+dim f1, w, h, c, strType
+
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Set objF = objFSO.GetFolder("c:\")
+Set objFC = objF.Files
+
+response.write "&lt;table border=""1"" cellpadding=""5""&gt;"
+
+For Each f1 in objFC
+  if instr(ucase(f1.Name), ".GIF") then
+     response.write "&lt;tr&gt;&lt;td&gt;" &amp; f1.name &amp; "&lt;/td&gt;&lt;td&gt;" &amp; _
+         f1.DateCreated &amp; "&lt;/td&gt;&lt;td&gt;" &amp; f1.Size &amp; "&lt;/td&gt;&lt;td&gt;"
+ 
+     if gfxSpex(f1.Path, w, h, c, strType) = true then
+        response.write w &amp; " x " &amp; h &amp; " " &amp; c &amp; " colors&lt;/td&gt;"
+        response.write "&lt;td&gt;&lt;img src=""" &amp; f1.Path &amp; """ " &amp; _
+              ImageResize(f1.Path, 75, 45) &amp; " border=""1""&gt;&lt;/td&gt;"
+     else
+        response.write "&nbsp;&lt;/td&gt;&lt;td align=""center""&gt;bad image&lt;/td&gt;"
+     end if
+ 
+     response.write "&lt;/tr&gt;"
+ 
+  end if
+Next
+
+response.write "&lt;/table&gt;"
+
+set objFC = nothing
+set objF = nothing
+set objFSO = nothing
+%&gt;
+</PRE></CODE></TD></TR></TBODY></TABLE>[<A 
+                  href="http://www.4guysfromrolla.com/demos/PropResizeTest.asp">View 
+                  the live demo!</A>] 
+                  <P><STRONG>Enough Yakking, Show Me The Code!</STRONG><BR>The 
+                  code for the function (below) is quite simple, really. Here is 
+                  a description of the steps it follows to do its magic: 
+                  <P>
+                  <UL>1.) First, call the <CODE>gfxSpex</CODE> function 
+                    (contained in <CODE>IMGSZ.ASP</CODE>) to determine the 
+                    height and width (and color depth and validity!) of the 
+                    image.<BR>2.) Determine the target image ratio and the 
+                    file's image ratio (width divided by depth)<BR>3.) If the 
+                    file's image ratio is greater-than the target image ratio, 
+                    then we know that we have to size proportionally based on 
+                    <CODE>WIDTH</CODE>, otherwise we size proportionally based 
+                    on <CODE>HEIGHT</CODE> (and if it was not a valid image, 
+                    return an empty resize string) </UL>
+                  <P>Oops! I'm <I>yakking</I> again, here's the code, already! 
+                  <P>
+                  <TABLE border=0 width="95%">
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=#cccccc width="100%"><CODE><PRE>function ImageResize(strImageName, intDesiredWidth, intDesiredHeight)
+   dim TargetRatio
+   dim CurrentRatio
+   dim strResize
+   dim w, h, c, strType
+
+   if gfxSpex(strImageName, w, h, c, strType) = true then
+      TargetRatio = intDesiredWidth / intDesiredHeight
+      CurrentRatio = w / h
+      if CurrentRatio &gt; TargetRatio then  ' We'll scale height
+         strResize = "width=""" &amp; intDesiredWidth &amp; """"
+      else
+         ' We'll scale width
+         strResize = "height=""" &amp; intDesiredHeight &amp; """" 
+      end if
+   else
+      strResize = ""
+   end if
+
+   ImageResize = strResize
+end Function
+</PRE></CODE></TD></TR></TBODY></TABLE>[<A 
+                  href="http://www.4guysfromrolla.com/webtech/code/propresize.asp.html">Download 
+                  the code</A>] 
+                  <P><STRONG>Caveats</STRONG><BR>You can integrate the 
+                  <CODE>PROPRESIZE.ASP</CODE> contents into the 
+                  <CODE>IMGSZ.ASP</CODE> code if you like. Note that this does 
+                  NOT perform an actual resize of the graphical image file, only 
+                  the visual representation of the image. What this means is 
+                  that if you have an image that is 800x600x24 bits which is 1 
+                  megabyte in size, and you ask the routine to scale the image 
+                  to a 100x75 pixel area, you will STILL be downloading that 
+                  entire 1 megabyte of picture information from the server. If 
+                  you want to do TRUE thumbnail file creation (on disk) you will 
+                  need to obtain any one of the graphical components available 
+                  today that offer this feature. 
+                  <P>Happy Programming! 
+                  <P>
+                  <LI>By <A href="mailto:mshaffer@nkn.net">Mike Shaffer</A> 
+                  <P>
+                  <HR>
+
+                  <P><B><U>Attachments:</U></B><BR></P>
+                  <LI><A 
+                  href="http://www.4guysfromrolla.com/demos/PropResizeTest.asp">View 
+                  the live demo</A><BR>
+                  <LI><A 
+                  href="http://www.4guysfromrolla.com/webtech/code/propresize.asp.html">Download 
+                  <CODE>propresize.asp</CODE> in text format</A><BR>
+                  <LI><A 
+                  href="http://www.4guysfromrolla.com/webtech/code/imgsz.asp.html">Download 
+                  <CODE>imgsz.asp</CODE> in text format</A><BR>
+                  <LI>Read <A 
+                  href="http://www.4guysfromrolla.com/webtech/050300-1.shtml">Determining 
+                  Image Properties in ASP</A><BR>
+                  <P><!--content_stop--></P></LI></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD align=middle colSpan=2 width="100%"><!-- 468x60-2 ad tag -->
+            <SCRIPT language=javascript>
+<!--
+OAS_AD('468x60-2');
+//-->
+</SCRIPT>
+            <NOSCRIPT><A 
+            href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/win/www.4guysfromrolla.com@468x60-1,468x60-2,125x125-1,125x125-2,125x125-3,125x125-4,125x125-5,125x125-6,125x125-7,125x125-8,125x125-9,125x125-10,cp1,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,cp10!468x60-2"><IMG 
+            border=0 
+            src="C:\Documents and Settings\Administrator\Desktop\4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files\www.4guysfromrolla(13).gif"></A> 
+            </NOSCRIPT><!-- /468x60-2 ad tag --></TD></TR></TBODY></TABLE></CENTER></TD></TR></TBODY></TABLE><BR><BR>
+<CENTER>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD align=middle>
+      <HR color=black noShade>
+
+      <P><FONT size=2><B><A 
+      href="http://www.4guysfromrolla.com/ASPScripts/Goto.asp?ID=23">Windows 
+      Internet Technology</A> | <A 
+      href="http://www.4guysfromrolla.com/webtech/">ASP Articles</A> | <A 
+      href="http://www.aspmessageboard.com/">ASPMessageboard.com</A> | <A 
+      href="http://www.aspfaqs.com/aspfaqs/">ASPFAQs.com</A> | <A 
+      href="http://aspnet.4guysfromrolla.com/">ASP.NET</A> | <A 
+      href="http://www.4guysfromrolla.com/advertise.shtml">Advertise</A> | <A 
+      href="http://www.4guysfromrolla.com/feedback.shtml">Feedback</A> | <A 
+      href="http://www.4guysfromrolla.com/awards.shtml">Awards</A> | <A 
+      href="http://www.4guysfromrolla.com/authors.shtml">Author an Article</A> 
+      </B>
+      <P>
+      <HR color=black noShade>
+
+      <P>
+      <CENTER><SPAN class=foot>Jupitermedia is publisher of the <A 
+      href="http://www.internet.com/">internet.com</A> and <A 
+      href="http://www.earthweb.com/">EarthWeb.com</A> networks. 
+      <HR noShade SIZE=1 width="95%">
+      Copyright 2003 Jupitermedia Corporation All Rights Reserved.</SPAN><BR><A 
+      class=foot href="http://www.internet.com/corporate/legal.html">Legal 
+      Notices</A>, &nbsp;<A class=foot 
+      href="http://www.internet.com/corporate/reprints.html#Licensing">Licensing</A>, 
+      <A class=foot 
+      href="http://www.internet.com/corporate/reprints.html#Reprints">Reprints</A>, 
+      &amp; <A class=foot 
+      href="http://www.internet.com/corporate/reprints.html#Permissions">Permissions</A>, 
+      &nbsp;<A class=foot 
+      href="http://www.internet.com/corporate/privacy/privacypolicy.html">Privacy 
+      Policy</A>. <BR><A href="http://www.earthweb.com/"><IMG 
+      alt=http://www.earthweb.com/ border=0 height=18 
+      src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/URL-ew.gif" 
+      width=200></A> <BR><A href="http://www.internet.com/"><IMG 
+      alt=http://www.internet.com/ border=0 height=18 
+      src="4GuysFromRolla_com - Proportional Image Resizing within a Constrained Area_files/URL.gif" 
+      width=161></A></FONT> 
+</CENTER></FONT></TD></TR></TBODY></TABLE></TD></TR></TABLE></CENTER></CENTER></BODY></BASEFONT></HTML>

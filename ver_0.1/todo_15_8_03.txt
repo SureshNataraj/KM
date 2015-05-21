@@ -1,0 +1,67 @@
+To do interface 
+
+	
+
+	Menu top pos ande left pos to accept
+
+	Quick Links as dynamic 
+
+	top marquee as dynamic text from db
+
+
+	Search option 
+
+	Advance search
+
+	World Map
+	
+	Mailing to all registered users. alert updation
+
+	Change The way categories are added. Same applies for modify
+
+	Last 10 updation shoudl be shown
+
+	Give a confirmation for delete.
+
+	Change the way articles are displayed. only title will be displayed
+
+	Search shoudl search only the text ( Should not allow to search for html code and noice words)
+
+	Upload to be changed to ws_upload script
+
+	upload to be a seperate page.	
+
+	split the teble 
+
+	articles , will have only artilces and article id, there should be only text and formated one field, with title
+
+	attachements table will have list of attachements with foreign key for articles
+
+	contetnt table : category and article linking will have categoryid and article id as foreign key.
+
+	Advance search features.
+
+		search by title
+		search by author
+		search by date
+		
+		Search in only these categories
+
+		
+		
+
+		
+	Admin interface
+		
+		Track deleted articles. retrive them if wanted
+		send message to everyone.
+		birthday alaram
+		notes maintaining
+
+		
+
+
+	
+
+	
+		

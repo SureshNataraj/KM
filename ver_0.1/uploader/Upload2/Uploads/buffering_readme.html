@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Pure ASP File Upload Performance Boost</title>
+</head>
+
+<body>
+
+<h1>ASP Upload Gets a Speed Boost</h1>
+
+<p>
+Jacob Gilley's
+<a href="http://www.asp101.com/articles/jacob/scriptupload.asp">Pure ASP File Upload</a>
+is an effective, free method for uploading user files to your server.
+Although well implemented, I found that the file I/O needed improvement.
+Concatenation is quite slow in VBScript and it was actually faster to
+write a single byte at a time to the disk than to concatenate the file
+prior to saving.
+</p>
+<p>
+Here Robbert Nix's
+<a href="http://www.planet-source-code.com/vb/scripts/ShowCode.asp?lngWId=4&txtCodeId=7110">improved concatenation algorithm</a>
+comes to the rescue.  I stumbled upon this algorithm when searching
+for performance enhancements in VBScript.  Essentially Nix's code
+allows Gilley's Pure ASP File Upload to return to concatenation as
+a viable method for preparing the file prior to saving.
+</p>
+<p>
+Two files are included with this implementation: <code>upload.asp</code>
+and <code>buffering.inc</code>.
+These files are meant to be incorporated with the existing distribution
+for Gilley's Pure ASP File Upload.  The <code>upload.asp</code> file
+replaces the existing version and the include file <code>buffering.inc</code>
+is used to improve upload time.
+</p>
+<p>
+<b>Note:</b> if you replace your existing
+version of upload.asp you <b>must</b> also copy buffering.inc to the same
+directory! No changes in existing upload pages are required to take
+advantage of this upgrade.
+</p>
+<p>
+Gilley's <b>Pure ASP File Upload</b> files can be found here:
+<a href="http://www.asp101.com/articles/jacob/fileuploader.zip">ASP Upload (Original Archive)</a> - necessary files.
+</p>
+
+<pre>
+--Will
+Do Many Things ... Well
+<a href="mailto:wbic16@hotmail.com?subject=ASP%20101%20Article%20Feedback">wbic16@hotmail.com</a>
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,1304 @@
+<?xml version="1.0"?>
+<package>
+
+<comment>
+ ################################################
+ ################################################
+ ##                                            ##
+ ##  FileUp Component                          ##
+ ##                                            ##
+ ################################################
+ ################################################
+</comment>
+<component id="FileUp">
+
+<?component error="true" debug="true"?>
+
+<registration
+	description="MetaBuilders.FileUp"
+	progid="MetaBuilders.FileUp"
+	version="1.00"
+	classid="{8e1d0a72-8ed4-4197-a338-45529cc74be1}"
+>
+</registration>
+
+<public>
+	<comment>Properties</comment>
+		<property name="Version" get />
+    	
+		<property name="TotalBytes" get />
+		<property name="OverWrite" get put />
+		<property name="SavePath" get put />
+	
+
+	<comment>Collections</comment>
+
+		<comment>Default</comment>
+		<property name="Item" get dispid="0" />
+		<property name="Form" get />
+
+	
+	<comment>Methods</comment>
+		<method name="Flush"/>
+</public>
+
+<implements type="ASP" id="ThisASP"/>
+
+<script language="VBScript">
+<![CDATA[
+
+Option Explicit
+On Error Resume Next
+
+''################################################
+''#  Private Variables                           #
+''################################################
+Private strVersion
+Private objForm
+Private objEmpty
+Private blnpOverWrite
+Private strpSavePath
+Private blnpMyRequest
+
+''################################################
+''#  Initialize Event                            #
+''################################################
+Call Object_Initialize
+Sub  Object_Initialize
+	strVersion = "1.00"
+	
+	''OverWrite false by default
+	blnpOverWrite = True
+	
+	strpSavePath = ThisASP.Server.MapPath(".")
+	
+	''If this is a multipart/form-data post then parse it, otherwise, leave it alone
+	If InStr( 1, Request.ServerVariables("HTTP_CONTENT_TYPE") , "multipart", vbTextCompare ) > 0 Then
+		blnpMyRequest = True
+		''This object is the top level of the dictionary
+		''and is responsible for filling up this custom request with the http post
+		set objForm = CreateComponent("Form")
+		objForm.Build
+		objForm.SetOverWriteFiles( blnpOverWrite )
+		objForm.SetSavePath( strpSavePath )
+		
+		''This object ( because BuildEmpty is set to True ) is the dummy object
+		''that is returned when the ASP page asks for an element that doesn't exist
+		set objEmpty = CreateComponent("Form")
+		objEmpty.BuildEmpty = True
+		objEmpty.Build
+	Else
+		blnpMyRequest = False
+		Set objForm = CreateComponent("Form")
+		objForm.BuildEmpty = True
+		objForm.Build
+	End If
+End Sub
+
+''################################################
+''#  Properties                                  #
+''################################################
+
+''################################################
+''#                                              #
+''# Item - (R) - Default                         #
+''#                                              #
+''# Purpose:                                     #
+''#   The Shortcut to search all of Request      #
+''#                                              #
+''# Inputs:                                      #
+''#   String strKey                              #
+''#   Which Item to Return                       #
+''#                                              #
+''# Return:                                      #
+''#   UploadControl, IStringList, or ""          #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Item( strKey )
+	dim strValue
+	
+	
+	''This Cycles thru the collections in the order
+	''that normally occurs, except replacing the form
+	''with mine
+	Set strValue = ThisASP.Request.QueryString( strKey )
+	If strValue <> "" Then
+		Set get_Item = strValue
+		Exit Function
+	End If
+	If blnpMyRequest Then
+		If objForm.Exists( strKey ) Then
+			Set get_Item = objForm.Item( strKey )
+			Exit Function
+		End If
+	Else
+		Set strValue = ThisASP.Request.Form( strKey )
+		If strValue <> "" Then
+			Set get_Item = strValue
+			Exit Function
+		End If
+	End If
+	Set strValue = ThisASP.Request.Cookies( strKey )
+	If strValue <> "" Then
+		Set get_Item = strValue
+		Exit Function
+	End If
+	Set strValue = ThisASP.Request.ClientCertificate( strKey )
+	If strValue <> "" Then
+		Set get_Item = strValue
+		Exit Function
+	End If
+	Set strValue = ThisASP.Request.ServerVariables( strKey )
+	If strValue <> "" Then
+		Set get_Item = strValue
+		Exit Function
+	End If
+	get_Item = Empty
+End Function
+
+
+''################################################
+''#                                              #
+''# Form - (R)                                   #
+''#                                              #
+''# Purpose:                                     #
+''#   The Accessor to the form items             #
+''#                                              #
+''# Inputs:                                      #
+''#   String strKey                              #
+''#   Which Item to Return                       #
+''#                                              #
+''# Return:                                      #
+''#   UploadControl with the Name strKey         #
+''#    or                                        #
+''#   Empty UploadControl if strKey doesn't exist#
+''#                                              #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Form( strKey )
+	If blnpMyRequest Then
+		''If an item named strKey exists
+		If objForm.Exists( strKey ) Then
+			''Return That UploadControl
+			set get_Form = objForm.Item( strKey )
+		''Else Return the dummy object ( holds an empty string )		
+		Else
+			set get_Form = objEmpty.Item( "Empty" )
+		End If
+	Else
+		Set get_Form = ThisASP.Request.Form( strKey )
+	End If
+End Function
+
+
+''################################################
+''#                                              #
+''# OverWrite - (R/W)                            #
+''#                                              #
+''# Purpose:                                     #
+''#   Should Files be OverWritten with Save      #
+''#                                              #
+''# Inputs:                                      #
+''#   Boolean newValue                           #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_OverWrite()
+	get_OverWrite = blnpOverWrite
+End Function
+
+''------------------------------------------------
+Function put_OverWrite(newValue)
+	If newValue = True Or newValue = False Then
+		objForm.SetOverWriteFiles ( newValue )
+		blnpOverWrite = newValue
+	Else
+		Err.Raise 1001, "MetaBuilders.FileUp", "OverWrite Must Be a Boolean"
+	End If
+End Function
+
+
+''################################################
+''#                                              #
+''# SavePath - (R/W)                             #
+''#                                              #
+''# Purpose:                                     #
+''#   Default Save Path For Controls             #
+''#                                              #
+''# Inputs:                                      #
+''#   String newValue                            #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_SavePath()
+	get_SavePath = strpSavePath
+End Function
+
+''------------------------------------------------
+Function put_SavePath(newValue)
+	Dim strNewSavePath
+	strNewSavePath = newValue
+	strNewSavePath = Replace( strNewSavePath, "/", "\" )
+	If Right( strNewSavePath, 1 ) <> "\" Then
+		strNewSavePath = strNewSavePath & "\"
+	End If
+	objForm.SetSavePath ( strNewSavePath )
+	strpSavePath = strNewSavePath
+End Function
+
+
+''################################################
+''#                                              #
+''# TotalBytes - (R)                             #
+''#                                              #
+''# Purpose:                                     #
+''#   Total Number of Bytes in the Form's Post   #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_TotalBytes()
+	If blnpMyRequest Then
+		get_TotalBytes = objForm.TotalBytes
+	Else
+		get_TotalBytes = ThisASP.Request.TotalBytes
+	End If
+End Function
+
+
+''################################################
+''#                                              #
+''# Version - (R)                                #
+''#                                              #
+''# Purpose:                                     #
+''#   Version of this Code                       #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Version()
+	get_Version = strVersion
+End Function
+
+
+''################################################
+''#  Methods                                     #
+''################################################
+
+''------------------------------------------------
+Function Flush()
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Clears the Object of all the items         #
+''#                                              #
+''################################################
+
+	objForm.RemoveAll
+End Function
+
+
+]]>
+</script>
+
+</component>
+
+
+<comment>
+ ################################################
+ ################################################
+ ##                                            ##
+ ##  Form Component                            ##
+ ##                                            ##
+ ################################################
+ ################################################
+</comment>
+<component id="Form">
+
+<?component error="true" debug="true"?>
+
+<registration
+	description="MetaBuilders.Form"
+	progid="MetaBuilders.Form"
+	version="1.00"
+	classid="{100a54b3-3058-47dc-96c0-229f2c65c241}"
+>
+</registration>
+
+<public>
+	<comment>Properties</comment>
+		<property name="Count" get />
+		<property name="TotalBytes" get />
+		<property name="BuildEmpty" />
+		<property name="Items" get />
+	
+
+	<comment>Collections</comment>
+		<comment>Default</comment>
+		<property name="Item" get dispid="0" />
+
+
+	<comment>Methods</comment>
+		<method name="Build" />
+		<method name="RemoveAll" />
+		<method name="Exists">
+			<PARAMETER name="strKey"/>
+		</method>
+		<method name="SetSavePath" >
+			<PARAMETER name="strPath" />
+		</method>
+		<method name="SetOverWriteFiles" >
+			<PARAMETER name="blnOverWrite" />
+		</method>
+</public>
+
+<implements type="ASP" id="MyASP"/>
+
+<script language="VBScript">
+<![CDATA[
+
+Option Explicit
+On Error Resume Next
+
+''################################################
+''#  Private Variables                           #
+''################################################
+Private objRequest
+Private byteCount
+
+
+''################################################
+''#  Initialize Event                            #
+''################################################
+Call Object_Initialize
+Sub  Object_Initialize
+	''by default, we build it for real
+	BuildEmpty = False
+	
+End Sub
+
+
+''################################################
+''#  Fields                                      #
+''################################################
+
+''boolean for creating a real request, or a dummy, empty request
+Dim BuildEmpty
+
+
+''################################################
+''#  Properties                                  #
+''################################################
+
+''################################################
+''#                                              #
+''# Item - (R) - Default                         #
+''#                                              #
+''# Purpose:                                     #
+''#   Grabs an UploadControl From the Request    #
+''#                                              #
+''# Inputs:                                      #
+''#   String or Integer varItem                  #
+''#   Which Item to Return                       #
+''#                                              #
+''# Return:                                      #
+''#   UploadControl with the Name strKey         #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Item( varItem )
+	Select Case TypeName( varItem )
+		Case "Long", "Integer"
+			Dim aryKeys
+			aryKeys = objRequest.Keys
+			Dim intIndex
+			intIndex = varItem - 1
+			If intIndex >= UBound( aryKeys ) Then
+				set get_Item = objRequest.Item( aryKeys( varItem ) )
+			Else
+				set get_Item = objRequest.Item( varItem )
+			End If
+		Case Else
+			set get_Item = objRequest.Item( varItem )
+	End Select
+	set get_Item = objRequest.Item( varItem )
+End Function
+
+''################################################
+''#                                              #
+''# Count - (R)                                  #
+''#                                              #
+''# Purpose:                                     #
+''#   The Total Number of form items             #
+''#                                              #
+''# Return:                                      #
+''#   Integer                                    #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Count()
+	get_Count = objRequest.Count
+End Function
+
+''################################################
+''#                                              #
+''# TotalBytes - (R)                             #
+''#                                              #
+''# Purpose:                                     #
+''#   Total Number of Bytes in the Form's Post   #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_TotalBytes()
+	get_TotalBytes = ByteCount
+End Function
+
+
+''################################################
+''#                                              #
+''# Items - (R)                                  #
+''#                                              #
+''# Returns:                                     #
+''#   an Array of all the Items                  #
+''#                                              #
+''################################################
+	
+''------------------------------------------------
+Function get_Items()
+	Items = objRequest.Items
+End Function
+
+''################################################
+''#  Methods                                     #
+''################################################
+
+''------------------------------------------------
+Function Build()
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Creates the Request Object and fills it    #
+''#   with UploadControl Objects                 #
+''#                                              #
+''# Notes:                                       #
+''#   This _should_ be Protected, but that isn't #
+''#   available in VBScript                      #
+''#                                              #
+''################################################
+
+	'' The Contents of the Request
+	Dim RequestBin
+	
+	''grab the total number of bytes in the http post
+	byteCount = MyASP.Request.TotalBytes
+	
+	''if there's something to build, and i haven't set buildempty true
+	If byteCount <> 0 And Not BuildEmpty Then
+		
+		''binary read the request
+		''this disables using the ASP Request.Form object for the rest of the page
+		RequestBin = MyASP.Request.BinaryRead(byteCount)	
+	
+		''Thanks to ASPToday for the code to this function, which does all the real parsing work
+		Set objRequest = BuildUploadRequest( RequestBin )
+	
+	''Otherwise, just make a dummy object		
+	Else
+		Set objRequest = BuildUploadEmpty()
+	End If
+
+End Function
+
+''------------------------------------------------
+Function RemoveAll()
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   deletes all the items in the object        #
+''#                                              #
+''################################################
+	
+	objRequest.RemoveAll
+End Function
+
+''------------------------------------------------
+Function Exists( strKey )
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   checks to see if the item exists           #
+''#                                              #
+''# Intputs:                                     #
+''#   String strKey                              #
+''#    Which Item to check for                   #
+''#                                              #
+''# Returns:                                     #
+''#   Boolean                                    #
+''#                                              #
+''################################################
+	
+	Exists = objRequest.Exists( strKey )
+End Function
+
+
+''------------------------------------------------
+Function SetSavePath( strPath )
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   sets the save-to path for each file        #
+''#   in the request                             #
+''#                                              #
+''# Intputs:                                     #
+''#   String strPath                             #
+''#    Fully Qualified File Path                 #
+''#                                              #
+''################################################
+
+	Dim var
+	For Each var In objRequest
+		objRequest( var ).SavePath = strPath
+	Next
+End Function
+
+''------------------------------------------------
+Function SetOverWriteFiles ( blnOverWrite )
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   sets the flag for overwriting files        #
+''#   for each file in request                   #
+''#                                              #
+''# Intputs:                                     #
+''#   Boolean blnOverWrite                       #
+''#                                              #
+''################################################
+
+	Dim var
+	For Each var in objRequest
+		objRequest( var ).OverWrite = blnOverWrite
+	Next
+End Function
+
+''################################################
+''#  Supporting Functions                        #
+''################################################
+
+''------------------------------------------------
+Private Function BuildUploadRequest(RequestBin)
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Does all the real work of parsing the      #
+''#   HTTP Post header.                          #
+''#                                              #
+''# Intputs:                                     #
+''#   Binary Data RequestBin                     #
+''#   The Data to parse                          #
+''#                                              #
+''# Returns:                                     #
+''#   Dictionary Object of Upload Controls       #
+''#                                              #
+''# Author:                                      #
+''#   Philippe Collignon  PhCollignon@email.com  #
+''#                                              #
+''# Modified by:                                 #
+''#   Andy Smith asmith@mactec.com               #
+''#                                              #
+''################################################
+
+
+	Dim UploadRequest
+	Set UploadRequest = CreateObject("Scripting.Dictionary")	
+	UploadRequest.CompareMode = vbTextCompare
+	Dim PosBeg, PosEnd, boundary, boundaryPos
+	Dim Pos, PosFile, PosBound
+	Dim Name, Value, FileSpec, ContentType
+	
+	''Get the boundary
+	PosBeg = 1
+	PosEnd = InstrB(PosBeg,RequestBin,getByteString(chr(13)))
+	boundary = MidB(RequestBin,PosBeg,PosEnd-PosBeg)
+	boundaryPos = InstrB(1,RequestBin,boundary)
+
+	''Get all data inside the boundaries
+	Do until (boundaryPos=InstrB(RequestBin,boundary & getByteString("--")))
+
+		''Members variable of objects are put in an UploadControl object
+		Dim UploadControl
+		Set UploadControl = CreateComponent("UploadControl")
+				
+		''Get an object name
+		Pos = InstrB(BoundaryPos,RequestBin,getByteString("Content-Disposition"))
+		Pos = InstrB(Pos,RequestBin,getByteString("name="))
+		PosBeg = Pos+6
+		PosEnd = InstrB(PosBeg,RequestBin,getByteString(chr(34)))
+		Name = getString(MidB(RequestBin,PosBeg,PosEnd-PosBeg))
+		PosFile = InstrB(BoundaryPos,RequestBin,getByteString("filename="))
+		PosBound = InstrB(PosEnd,RequestBin,boundary)
+
+		''Test if object is of file type
+		If  PosFile<>0 AND (PosFile<PosBound) Then
+
+			''Get Filename, content-type and content of file
+			PosBeg = PosFile + 10
+			PosEnd =  InstrB(PosBeg,RequestBin,getByteString(chr(34)))
+			FileSpec = getString(MidB(RequestBin,PosBeg,PosEnd-PosBeg))
+
+				''FileSpec holds the Full Path to the object
+				''The Current code is only known to work on Windows Boxes
+				
+				''Add Path to UploadControl object
+				UploadControl.Add "Path", GetPath( FileSpec )
+	
+				''Add FileName to UploadControl object
+				UploadControl.Add "FileName", GetFileName( FileSpec )
+				
+				''Add Extension to UploadControl Object
+				UploadControl.Add "Extension", GetExtension( FileSpec )
+				
+			''Add content-type to UploadControl object
+			Pos = InstrB(PosEnd,RequestBin,getByteString("Content-Type:"))
+			PosBeg = Pos+14
+			PosEnd = InstrB(PosBeg,RequestBin,getByteString(chr(13)))
+			ContentType = getString(MidB(RequestBin,PosBeg,PosEnd-PosBeg))
+			UploadControl.Add "ContentType",ContentType
+
+			''Get content of object
+			PosBeg = PosEnd+4
+			PosEnd = InstrB(PosBeg,RequestBin,boundary)-2
+			Value = MidB(RequestBin,PosBeg,PosEnd-PosBeg)
+		
+		Else  ''Not A File
+
+			''Get content of object
+			Pos = InstrB(Pos,RequestBin,getByteString(chr(13)))
+			PosBeg = Pos+4
+			PosEnd = InstrB(PosBeg,RequestBin,boundary)-2
+			Value = getString(MidB(RequestBin,PosBeg,PosEnd-PosBeg))
+		End If
+
+		''Add content to UploadControl object
+		UploadControl.Add "Value" , Value	
+    	
+		
+		''If a control With This name already Exists
+		If UploadRequest.Exists( name ) Then
+			''Append ", " and the new value, to the old value
+			UploadRequest.Item( name ).Value = UploadRequest.Item( name ).Value &", "& UploadControl.Value
+		Else
+			''Add UploadControl object to main dictionary
+			UploadRequest.Add name, UploadControl	
+		End If
+		
+		''Loop to next object
+		BoundaryPos=InstrB(BoundaryPos+LenB(boundary),RequestBin,boundary)
+	Loop
+
+	Set BuildUploadRequest = UploadRequest
+End Function
+
+
+''------------------------------------------------
+Private Function getByteString(StringStr)
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   String to byte string conversion           #
+''#                                              #
+''# Intputs:                                     #
+''#   StringStr                                  #
+''#   Character String to Convert                #
+''#                                              #
+''# Returns:                                     #
+''#   Binary String                              #
+''#                                              #
+''# Author:                                      #
+''#   Philippe Collignon  PhCollignon@email.com  #
+''#                                              #
+''# Modified by:                                 #
+''#   Andy Smith asmith@mactec.com               #
+''#                                              #
+''################################################
+
+	Dim i, char
+	For i = 1 to Len(StringStr)
+		char = Mid(StringStr,i,1)
+		getByteString = getByteString & chrB(AscB(char))
+	Next
+End Function
+
+
+''------------------------------------------------
+Private Function getString(StringBin)
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   byte string to String conversion           #
+''#                                              #
+''# Intputs:                                     #
+''#   StringBin                                  #
+''#   Binary String to Convert                   #
+''#                                              #
+''# Returns:                                     #
+''#   Character String                           #
+''#                                              #
+''# Author:                                      #
+''#   Philippe Collignon  PhCollignon@email.com  #
+''#                                              #
+''# Modified by:                                 #
+''#   Andy Smith asmith@mactec.com               #
+''#                                              #
+''################################################
+
+	Dim intCount
+	getString =""
+	For intCount = 1 to LenB(StringBin)
+		getString = getString & chr(AscB(MidB(StringBin,intCount,1))) 
+	Next
+End Function
+
+''------------------------------------------------
+Private Function GetExtension ( strFileName )
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Retrieve extension from filename string    #
+''#                                              #
+''# Intputs:                                     #
+''#   String strFileName                         #
+''#                                              #
+''# Returns:                                     #
+''#   String                                     #
+''#   the Extension                              #
+''#                                              #
+''################################################
+
+	Dim iDot
+	Dim iStrLength
+	Dim iExtLength
+	
+	iDot = InStrRev( strFileName, "." )
+	iStrLength = Len ( strFileName )
+	iExtLength = iStrLength - iDot
+	
+	If iDot = 0 Or isNull(iDot) Then
+		GetExtension = ""
+	Else
+		GetExtension = LCase(Right ( strFileName, iExtLength ))
+	End If
+	
+End Function
+
+''------------------------------------------------
+Private Function GetPath ( filespec )
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Retrieve Path from filespec                #
+''#                                              #
+''# Intputs:                                     #
+''#   String filespec                            #
+''#                                              #
+''# Returns:                                     #
+''#   String                                     #
+''#   the Path                                   #
+''#                                              #
+''################################################
+	Select Case True
+		Case InStr( filespec, "\" ) > 0 ''PC
+			GetPath = Left ( FileSpec,InstrRev(FileSpec,"\") )
+		Case InStr( filespec, "/" ) > 0 ''Nix
+			GetPath = Left ( FileSpec,InstrRev(FileSpec,"/") )
+		Case InStr( filespec, ":" ) > 0 ''Mac ( or Nix ( but we already got them above ) )
+			GetPath = Left ( FileSpec,InstrRev(FileSpec,":") )
+		Case Else ''Who knows, return full filespec
+			GetPath = filespec
+	End Select
+End Function
+
+''------------------------------------------------
+Private Function GetFileName( filespec )
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Retrieve FileName from the filespec        #
+''#                                              #
+''# Intputs:                                     #
+''#   String filespec                            #
+''#                                              #
+''# Returns:                                     #
+''#   String                                     #
+''#   the FileName                               #
+''#                                              #
+''################################################
+	Select Case True
+		Case InStr( filespec, "\" ) > 0 ''PC
+			GetFileName = Right(FileSpec, Len(FileSpec)-InstrRev(FileSpec,"\"))
+		Case InStr( filespec, "/" ) > 0 ''Nix
+			GetFileName = Right(FileSpec, Len(FileSpec)-InstrRev(FileSpec,"/"))
+		Case InStr( filespec, ":" ) > 0 ''Mac ( or Nix ( but we already got them above ) )
+			GetFileName = Right(FileSpec, Len(FileSpec)-InstrRev(FileSpec,":"))
+		Case Else ''Who knows, return full filespec
+			GetFileName = filespec
+	End Select
+End Function
+
+''------------------------------------------------
+Private Function BuildUploadEmpty()
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Provides an Empty Request object for       #
+''#   compatibility with the ASP Request Object  #
+''#                                              #
+''# Returns:                                     #
+''#   Dictionary Object of 1 Empty UploadControl #
+''#                                              #
+''# Author:                                      #
+''#   Andy Smith asmith@mactec.com               #
+''#                                              #
+''################################################
+
+	Dim EmptyControl
+	Set EmptyControl = CreateComponent("UploadControl")
+	EmptyControl.Add "Value" , ""
+
+	Dim EmptyRequest
+	Set EmptyRequest = CreateObject("Scripting.Dictionary")	
+	EmptyRequest.CompareMode = vbTextCompare
+	EmptyRequest.Add "Empty", EmptyControl
+
+	Set BuildUploadEmpty = EmptyRequest
+End Function
+]]>
+</script>
+
+</component>
+
+
+<comment>
+ ################################################
+ ################################################
+ ##                                            ##
+ ##  UploadControl Component                   ##
+ ##                                            ##
+ ################################################
+ ################################################
+</comment>
+<component id="UploadControl">
+
+<?component error="true" debug="true"?>
+
+<registration
+	description="MetaBuilders.UploadControl"
+	progid="MetaBuilders.UploadControl"
+	version="1.00"
+	classid="{a1650056-daa0-4bc3-a072-2f4810f14ed5}"
+>
+</registration>
+
+<public>
+	<comment>Properties</comment>
+		<comment>Default</comment>
+		<property name="Item" get dispid="0" />
+
+		<property name="Value" get put />
+
+		<property name="FileName" get />
+		<property name="Extension" get />
+		<property name="Path" get />
+		<property name="ContentType" get />
+		<property name="SavePath" get put />
+		<property name="OverWrite" get put />
+
+
+	<comment>Methods</comment>
+		<method name="Save"/>
+		<method name="SaveAs">
+			<PARAMETER name="strFilename"/>
+		</method>
+		<method name="Exists">
+			<PARAMETER name="strKey"/>
+		</method>
+		<method name="Add">
+			<PARAMETER name="strKey"/>
+			<PARAMETER name="varValue"/>
+		</method>
+</public>
+
+<script language="VBScript">
+<![CDATA[
+
+Option Explicit
+On Error Resume Next
+
+''################################################
+''#  Private Variables                           #
+''################################################
+Private UploadControl
+Private strSavePath
+Private OverWrite
+
+
+''################################################
+''#  Initialize Event                            #
+''################################################
+Call Object_Initialize
+Sub  Object_Initialize
+	Set UploadControl = CreateObject("Scripting.Dictionary")
+	UploadControl.CompareMode = vbTextCompare
+	''strSavePath = ""
+	''OverWrite = False
+End Sub
+
+
+''################################################
+''#  Properties                                  #
+''################################################
+
+''################################################
+''#                                              #
+''# Item - (R) - Default                         #
+''#                                              #
+''# Purpose:                                     #
+''#   Allows for different return values based   #
+''#   on ControlType                             #
+''#   Translates to the Value property for       #
+''#   normal controls and the Filename value for #
+''#   File Controls                              #
+''#                                              #
+''# Type:                                        #
+''#   String                                     #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Item()
+	If UploadControl.Exists( "FileName" ) Then
+		get_Item = UploadControl.Item("FileName")
+	Else
+		get_Item = UploadControl.Item("Value")
+	End If
+End Function
+
+''################################################
+''#                                              #
+''# Value - (R/W)                                #
+''#                                              #
+''# Purpose:                                     #
+''#   Payload of the UploadControl               #
+''#                                              #
+''# Type:                                        #
+''#   String for Normal Controls                 #
+''#   BinaryData for File Controls               #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Value()
+	get_Value = UploadControl.Item( "Value" )
+End Function
+
+''------------------------------------------------
+Function put_Value( newValue )
+	UploadControl.Item( "Value" ) = newValue
+End Function
+
+
+''################################################
+''#                                              #
+''# Path - (R)                                   #
+''#                                              #
+''# Purpose:                                     #
+''#   Path on the client machine to the File     #
+''#                                              #
+''# Type:                                        #
+''#   String                                     #
+''#                                              #
+''# Notes:                                       #
+''#   Returns the Value of a non-file Control    #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Path()
+	If UploadControl.Exists( "Path" ) Then
+		get_Path = UploadControl.Item( "Path" )
+	Else
+		get_Path = UploadControl.Item( "Value" )
+	End If
+End Function
+
+''################################################
+''#                                              #
+''# FileName - (R)                               #
+''#                                              #
+''# Purpose:                                     #
+''#   Filename of the File                       #
+''#                                              #
+''# Type:                                        #
+''#   String                                     #
+''#                                              #
+''# Notes:                                       #
+''#   Returns the Value of a non-file Control    #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_FileName()
+	If UploadControl.Exists( "FileName" ) Then
+		get_FileName = UploadControl.Item( "FileName" )
+	Else
+		get_FileName = UploadControl.Item( "Value" )
+	End If
+End Function
+
+''################################################
+''#                                              #
+''# Extension - (R)                              #
+''#                                              #
+''# Purpose:                                     #
+''#   Extension Portion of the Filename          #
+''#                                              #
+''# Type:                                        #
+''#   String                                     #
+''#                                              #
+''# Notes:                                       #
+''#   Returns the Value of a non-file Control    #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_Extension()
+	If UploadControl.Exists( "FileName" ) Then
+		get_Extension = UploadControl.Item( "Extension" )
+	Else
+		get_Extension = UploadControl.Item( "Value" )
+	End If
+End Function
+
+''################################################
+''#                                              #
+''# ContentType - (R)                            #
+''#                                              #
+''# Purpose:                                     #
+''#   The Mime Type (eg. image/jpeg )            #
+''#                                              #
+''# Type:                                        #
+''#   String                                     #
+''#                                              #
+''# Notes:                                       #
+''#   Returns the Value of a non-file Control    #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_ContentType()
+	If UploadControl.Exists( "ContentType" ) Then
+		get_ContentType = UploadControl.Item( "ContentType" )
+	Else
+		get_ContentType = UploadControl.Item( "Value" )
+	End If
+End Function
+
+''################################################
+''#                                              #
+''# SavePath - (R/W)                             #
+''#                                              #
+''# Purpose:                                     #
+''#   Where to save the file to                  #
+''#                                              #
+''# Type:                                        #
+''#   String                                     #
+''#                                              #
+''# Notes:                                       #
+''#   Always "" for a non-file Control           #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_SavePath()
+	get_SavePath = strSavePath
+End Function
+
+''------------------------------------------------
+Function put_SavePath(newValue)
+	newValue = Replace( newValue, "/", "\" )
+	If Right( newValue, 1 ) <> "\" Then
+		newValue = newValue & "\"
+	End If
+	If UploadControl.Exists( "FileName" ) Then
+		strSavePath = newValue
+	End if
+End Function
+
+
+''################################################
+''#                                              #
+''# OverWrite = (R/W)                            #
+''#                                              #
+''# Purpose:                                     #
+''#   Whether to overwrite existings files       #
+''#                                              #
+''# Type:                                        #
+''#   Boolean                                    #
+''#                                              #
+''# Notes:                                       #
+''#   Always False for a non-file Control        #
+''#                                              #
+''################################################
+
+''------------------------------------------------
+Function get_OverWrite()
+	get_OverWrite = OverWrite
+End Function
+
+''------------------------------------------------
+Function put_OverWrite(newValue)
+	If newValue = True Or newValue = False Then
+		If UploadControl.Exists( "FileName" ) Then
+			OverWrite = newValue
+		End If
+	Else
+		Err.Raise 1001, "MetaBuilders.FileUp", "OverWrite Must Be a Boolean"
+	End If
+End Function
+
+
+
+''################################################
+''#  Methods                                     #
+''################################################
+
+''------------------------------------------------
+Function Save()
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Saves a control to the current SavePath    #
+''#                                              #
+''# Notes:                                       #
+''#   Attempting to save a non-file control is   #
+''#   an error                                   #
+''#   Attemting to OverWrite a file with         #
+''#   OverWrite set to False is an error         #
+''#                                              #
+''################################################
+
+	Dim objFSO, objFile, z
+	
+	''If this is UploadControl is a File
+	If UploadControl.Exists("Filename") Then
+		''Create a new File, OverWriting according to Property
+		Set objFSO = CreateObject("Scripting.FileSystemObject")
+		Set objFile = objFSO.CreateTextFile( strSavePath & UploadControl.Item("FileName"), OverWrite )
+		''Write contents
+		For z = 1 to LenB(UploadControl.Item("Value"))
+		 objFile.Write chr(AscB(MidB(UploadControl.Item("Value"),z,1)))
+		Next
+		''Close the file
+		objFile.Close
+		Set objFSO = Nothing
+	''Else Throw an Exception
+	Else
+		Err.Raise 1001, "MetaBuilders.FileUp.UploadControl", "Only File Controls Can Be Saved"
+	End If
+End Function
+
+''------------------------------------------------
+Function SaveAs(strFilename)
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Saves a control to the current SavePath    #
+''#                                              #
+''# Inputs:                                      #
+''#   String strFilename                         #
+''#    The filename to use                       #
+''#                                              #
+''# Notes:                                       #
+''#   Attempting to save a non-file control is   #
+''#   an error                                   #
+''#   Attemting to OverWrite a file with         #
+''#   OverWrite set to False is an error         #
+''#                                              #
+''################################################
+
+	Dim objFSO, objFile, z
+	
+	''If this is UploadControl is a File
+	If UploadControl.Exists("Filename") Then
+		''Create a new File, OverWriting according to Property
+		Set objFSO = CreateObject("Scripting.FileSystemObject")
+		Set objFile = objFSO.CreateTextFile( strSavePath & strFileName, OverWrite )
+		''Write contents
+		For z = 1 to LenB(UploadControl.Item("Value"))
+		 objFile.Write chr(AscB(MidB(UploadControl.Item("Value"),z,1)))
+		Next
+		''Close the file
+		objFile.Close
+		Set objFSO = Nothing
+	''Else Throw an Exception
+	Else
+		Err.Raise 1001, "MetaBuilders.FileUp.UploadControl", "Only File Controls Can Be Saved"
+	End If
+End Function
+
+''------------------------------------------------
+Function Exists( strKey )
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Determines if a Control Property Exists    #
+''#                                              #
+''# Inputs:                                      #
+''#   String strKey                              #
+''#    The Property to check for                 #
+''#                                              #
+''# Returns:                                     #
+''#   Boolean                                    #
+''#                                              #
+''# Notes:                                       #
+''#   Should be Protected                        #
+''#                                              #
+''################################################
+
+	Exists = UploadControl.Exists( strKey )
+End Function
+
+''------------------------------------------------
+Function Add(strKey, varValue)
+''################################################
+''#                                              #
+''# Purpose:                                     #
+''#   Adds a Key/Value Pair to the Control       #
+''#                                              #
+''# Inputs:                                      #
+''#   String strKey                              #
+''#    The Property to add                       #
+''#   Variant varValue                           #
+''#    The Corrosponding value                   #
+''#                                              #
+''# Notes:                                       #
+''#   Should be Protected                        #
+''#                                              #
+''################################################
+
+	UploadControl.Add strKey, varValue
+End Function
+
+]]>
+</script>
+
+</component>
+</package>

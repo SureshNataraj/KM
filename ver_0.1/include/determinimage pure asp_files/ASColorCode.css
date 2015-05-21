@@ -1,0 +1,39 @@
+.ASColorCode {
+	BACKGROUND-COLOR: #ffffcc; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; COLOR: black; FONT-FAMILY: 'Courier New', 'Courier', 'Serif'; FONT-SIZE: 10pt; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px
+}
+.ASColorCode .String {
+	COLOR: #0000ff; TEXT-DECORATION: none
+}
+.ASColorCode .Comment {
+	COLOR: #808080; FONT-STYLE: italic
+}
+.ASColorCode .Reserved {
+	COLOR: #000084; TEXT-DECORATION: none
+}
+.ASColorCode .Constant {
+	COLOR: #444444; TEXT-DECORATION: none
+}
+.ASColorCode .Function {
+	COLOR: #000084; TEXT-DECORATION: none
+}
+.ASColorCode .Method {
+	COLOR: purple; TEXT-DECORATION: none
+}
+.ASColorCode .Operator {
+	COLOR: brown; TEXT-DECORATION: none
+}
+.ASColorCode .Property {
+	COLOR: purple; TEXT-DECORATION: none
+}
+.ASColorCode .Statement {
+	COLOR: #444444; TEXT-DECORATION: none
+}
+:hover {
+	TEXT-DECORATION: underline
+}
+.HTML {
+	BACKGROUND-COLOR: #ffffff; COLOR: black; FONT-FAMILY: 'Courier New', 'Courier', 'Serif'; FONT-SIZE: 10pt
+}
+.HTML-Tag {
+	COLOR: blue
+}

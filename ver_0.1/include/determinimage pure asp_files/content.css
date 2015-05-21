@@ -1,0 +1,24 @@
+H1 {
+	BACKGROUND-COLOR: #f2f5fa; BORDER-BOTTOM: #a3b3c0 1px solid; BORDER-LEFT: #a3b3c0 1px solid; BORDER-RIGHT: #a3b3c0 1px solid; BORDER-TOP: #a3b3c0 1px solid; COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 140%; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px
+}
+H2 {
+	BORDER-BOTTOM: #a3b3c0 1px solid; COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 120%; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px
+}
+H3 {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 110%; FONT-STYLE: italic; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px
+}
+H4 {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px
+}
+.Quote {
+	BORDER-BOTTOM: #a8b2bb 1px solid; BORDER-LEFT: #a8b2bb 1px solid; BORDER-RIGHT: #a8b2bb 1px solid; BORDER-TOP: #a8b2bb 1px solid; COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 12px; FONT-STYLE: italic; MARGIN-LEFT: 25px; PADDING-BOTTOM: 2px
+}
+.Code {
+	BACKGROUND: #ffffcc; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; COLOR: black; FONT-FAMILY: 'Courier New', 'Courier', 'Serif'; FONT-SIZE: 10pt; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px
+}
+.Note {
+	BACKGROUND: #ffffdb; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; COLOR: black; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%; FONT-STYLE: italic; FONT-WEIGHT: bold; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px
+}
+.Highlight {
+	BACKGROUND-COLOR: #eff1f0; BORDER-BOTTOM: #666699 1px solid; BORDER-LEFT: #666699 1px solid; BORDER-RIGHT: #666699 1px solid; BORDER-TOP: #666699 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 18px; FONT-STYLE: italic; FONT-WEIGHT: bold; TEXT-ALIGN: center; VERTICAL-ALIGN: middle
+}

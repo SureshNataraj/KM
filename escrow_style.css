@@ -1,0 +1,18 @@
+
+a {font-family: Verdana;font-size:11px;font-style: normal;color: #313952;text-decoration: none;}
+a:hover{font-family: Verdana;font-size:11px;font-style: normal;color: #313952;text-decoration: underline;}
+
+
+a.downlink {font-family: Verdana;font-size:11px;font-style: normal;color: #ffffff;text-decoration: none;}
+a.downlink:hover{font-family: Verdana;font-size:11px;font-style: normal;color: #ffffff;text-decoration: underline;}
+
+
+
+a.abc{font-family: Verdana;font-size:9px;font-style: normal;color: #000000;text-decoration: none;}
+a.abc:hover{font-family: Verdana;font-size:9px;font-style: normal;color: #313952;text-decoration: underline;}
+
+a.link{font-family: Arial;font-size:9px;font-style: normal;color: #000000;text-decoration: none;}
+a.link:hover{font-family: Arial;font-size:9px;font-style: normal;color: #313952;text-decoration: underline;}
+
+a.top {font-family: Verdana;font-size:11px;font-style: normal;color: #ffffff;text-decoration: none;}
+a.top:hover{font-family: Verdana;font-size:11px;font-style: normal;color: #000000;text-decoration: underline;}

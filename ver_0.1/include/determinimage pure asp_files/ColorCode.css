@@ -1,0 +1,39 @@
+.ColorCode {
+	BACKGROUND: #ffffcc; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; COLOR: black; FONT-FAMILY: 'Courier New', 'Courier', 'Serif'; FONT-SIZE: 10pt; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px
+}
+.ColorCode .String {
+	COLOR: #008800; TEXT-DECORATION: none
+}
+.ColorCode .Comment {
+	COLOR: #808080; FONT-STYLE: italic
+}
+.ColorCode .Reserved {
+	COLOR: #0000ff; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.ColorCode .Constant {
+	COLOR: #009999; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.ColorCode .Function {
+	COLOR: #444444; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.ColorCode .Method {
+	COLOR: purple; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.ColorCode .Operator {
+	COLOR: brown; TEXT-DECORATION: none
+}
+.ColorCode .Property {
+	COLOR: purple; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.ColorCode .Statement {
+	COLOR: #444444; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+:hover {
+	TEXT-DECORATION: underline
+}
+.HTML {
+	BACKGROUND-COLOR: #ffffff; COLOR: black; FONT-FAMILY: 'Courier New', 'Courier', 'Serif'; FONT-SIZE: 10pt
+}
+.HTML-Tag {
+	COLOR: blue
+}

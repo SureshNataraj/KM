@@ -1,0 +1,231 @@
+INPUT.TEXT {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #a8b2bb 1px solid; BORDER-LEFT: #a8b2bb 1px solid; BORDER-RIGHT: #a8b2bb 1px solid; BORDER-TOP: #a8b2bb 1px solid; COLOR: #000000; FONT-FAMILY: Verdena; FONT-SIZE: 10px; HEIGHT: 18px; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; PADDING-TOP: 1px
+}
+INPUT.RADIO {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #a8b2bb 1px solid; BORDER-LEFT: #a8b2bb 1px solid; BORDER-RIGHT: #a8b2bb 1px solid; BORDER-TOP: #a8b2bb 1px solid; COLOR: #000000; FONT-FAMILY: Verdena; FONT-SIZE: 10px; HEIGHT: 18px; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; PADDING-TOP: 1px; WIDTH: 20px
+}
+TEXTAREA {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #a8b2bb 1px solid; BORDER-LEFT: #a8b2bb 1px solid; BORDER-RIGHT: #a8b2bb 1px solid; BORDER-TOP: #a8b2bb 1px solid; COLOR: #000000; FONT-FAMILY: Verdana; FONT-SIZE: 10px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px
+}
+SELECT {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #a8b2bb 1px solid; BORDER-LEFT: #a8b2bb 1px solid; BORDER-RIGHT: #a8b2bb 1px solid; BORDER-TOP: #a8b2bb 1px solid; COLOR: #000000; FONT-FAMILY: Verdana; FONT-SIZE: 10px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px
+}
+.clsFooter {
+	BACKGROUND-COLOR: white; BORDER-BOTTOM: #a8b2bb 1px solid; BORDER-LEFT: #a8b2bb 1px solid; BORDER-RIGHT: #a8b2bb 1px solid; BORDER-TOP: #a8b2bb 1px solid; MARGIN-LEFT: 184px; MARGIN-RIGHT: 184px; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}
+#leftcontent {
+	LEFT: 4px; POSITION: absolute; TOP: 115px; WIDTH: 180px
+}
+#centercontent {
+	MARGIN-LEFT: 179px; MARGIN-RIGHT: 179px; PADDING-TOP: 4px; voice-family: "\"
+}
+voice-family:unknown inherit margin-left:unknown 181px margin-right:unknown htmlbody #centercontent {
+	MARGIN-LEFT: 181px; MARGIN-RIGHT: 181px
+}
+#rightcontent {
+	POSITION: absolute; RIGHT: 0px; TOP: 115px; WIDTH: 180px
+}
+A {
+	COLOR: #4f738f; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #003366; TEXT-DECORATION: underline
+}
+TD {
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 75%
+}
+P {
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%
+}
+.clsMainHeader {
+	HEIGHT: 115px; WIDTH: 100%
+}
+.clsMain {
+	WIDTH: 100%
+}
+.clsFullContent {
+	BACKGROUND-COLOR: #ffffff; HEIGHT: 700px
+}
+.clsContent {
+	BACKGROUND-COLOR: #ffffff
+}
+.clsSubHeader {
+	
+}
+.clsSubHeaderBack {
+	
+}
+.clsSubHeaderTitle {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 160%; FONT-WEIGHT: bold
+}
+.clsSubHeaderMessage {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%
+}
+.clsSubHeaderLogin {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 70%
+}
+.clsNewsHeadTitle {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 160%; FONT-STYLE: italic; FONT-WEIGHT: bold
+}
+.clsNewsHeadTitleBack {
+	
+}
+.clsNewsTitleBackNoContent {
+	BACKGROUND-COLOR: #ffffff
+}
+.clsNewsTitle {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px
+}
+.clsNewsTitle:hover {
+	COLOR: #003366
+}
+.clsNewsUser {
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%
+}
+.clsNewsUser:hover {
+	COLOR: #003366
+}
+.clsNewsDate {
+	COLOR: #949494; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%
+}
+.clsNewsDownloadStats {
+	COLOR: #4f738f; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%
+}
+.clsNewsComments {
+	COLOR: #949494; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%; TEXT-DECORATION: none
+}
+.clsNewsComments:hover {
+	COLOR: #003366
+}
+.clsNewsPostComments {
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; TEXT-DECORATION: none
+}
+.clsNewsPostComments:hover {
+	COLOR: #003366
+}
+.clsNewsRating {
+	COLOR: #4f738f; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 12px
+}
+.clsNewsText {
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; TEXT-DECORATION: none
+}
+.clsNewsReadMore {
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; TEXT-DECORATION: none
+}
+.clsNewsReadMore:hover {
+	COLOR: #003366
+}
+.clsNewsReplySubject {
+	COLOR: black; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.clsNewsReplyAuthor {
+	COLOR: #949494; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%; TEXT-DECORATION: none
+}
+.clsNewsReplyAuthor:hover {
+	COLOR: #003366
+}
+.clsNewsReplyDate {
+	COLOR: #949494; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%; TEXT-DECORATION: none
+}
+.clsNewsReplyText {
+	FONT-SIZE: 80%; PADDING-BOTTOM: 8px; PADDING-TOP: 3px
+}
+TABLE.clsSideBar {
+	MARGIN: 3px 3px 8px; WIDTH: 170px
+}
+.clsSideBarColumn {
+	WIDTH: 170px
+}
+.clsSideBarBlockTitle {
+	BORDER-BOTTOM: #a8b2bb 1px solid; COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 80%; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; TEXT-DECORATION: none
+}
+.clsSideBarBlockTitleBack {
+	
+}
+.clsSideBarBlockText {
+	COLOR: #192e43; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 70%; TEXT-DECORATION: none
+}
+.clsSideBarBlockRondText {
+	COLOR: #192e43; PADDING-TOP: 5px
+}
+.clsSideBarBlockBullet {
+	COLOR: #053462; LIST-STYLE: disc; MARGIN-TOP: 3px
+}
+.clsSideBarBlockLinkEven:active {
+	COLOR: #003060
+}
+.clsSideBarBlockLinkEven:visited {
+	COLOR: #003060
+}
+.clsSideBarBlockLinkEven:hover {
+	COLOR: #003366
+}
+.clsSideBarBlockLink:active {
+	COLOR: #003060
+}
+.clsSideBarBlockLink:visited {
+	COLOR: #003060
+}
+.clsSideBarBlockLink:hover {
+	COLOR: #003366
+}
+TABLE.clsStatsBlock {
+	WIDTH: 204px
+}
+TABLE.clsRelatedBlock {
+	WIDTH: 295px
+}
+.clsStatsBlockTitle {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-WEIGHT: bold; PADDING-BOTTOM: 3px; PADDING-TOP: 3px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.clsStatsBlockRondText {
+	
+}
+.clsStatsBlockLink:active {
+	COLOR: #003060
+}
+.clsStatsBlockLink:visited {
+	COLOR: #003060
+}
+.clsStatsBlockLink:hover {
+	COLOR: #003366
+}
+.clsCategoryBlockLink {
+	BACKGROUND-COLOR: white; COLOR: #142f4a; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%; TEXT-DECORATION: none
+}
+.clsCategoryBlockLink:hover {
+	COLOR: #003366
+}
+.clsCategoryGrayBlockLink {
+	BACKGROUND-COLOR: white; COLOR: silver; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 90%; TEXT-DECORATION: none
+}
+.clsCategoryGrayBlockLink:hover {
+	COLOR: gray
+}
+BODY.clsPopup {
+	BACKGROUND-COLOR: white
+}
+TABLE.clsPopupForm {
+	BACKGROUND-COLOR: #f2f5fa
+}
+.clsErrorMessage {
+	COLOR: #003366; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 140%; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.knop {
+	BACKGROUND-COLOR: #f2f5fa; COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 10px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.reply-user {
+	COLOR: #003060; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 120%; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.TextButton {
+	BACKGROUND-COLOR: #003163; COLOR: #d7e4f0; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 12px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.TextButton:hover {
+	BACKGROUND-COLOR: #003163; COLOR: #ffffff; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 12px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.TextButtonLight {
+	BACKGROUND-COLOR: #6384b5; COLOR: #d7e4f0; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 12px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.TextButtonLight:hover {
+	BACKGROUND-COLOR: #6384b5; COLOR: #ffffff; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 12px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}

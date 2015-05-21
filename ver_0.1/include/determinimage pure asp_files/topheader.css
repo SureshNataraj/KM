@@ -1,0 +1,18 @@
+.navigation {
+	COLOR: #4f738f; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.navigation:link {
+	COLOR: #4f738f; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.navigation:visited {
+	COLOR: #4f738f; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-STYLE: normal; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.navigation:hover {
+	COLOR: #003366; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-STYLE: normal; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.navigation_selected {
+	COLOR: #003366; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-STYLE: normal; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.navigation_selected:hover {
+	COLOR: #003366; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 100%; FONT-STYLE: normal; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}

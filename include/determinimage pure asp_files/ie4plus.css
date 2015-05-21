@@ -1,0 +1,33 @@
+.clsForm {
+	BACKGROUND-COLOR: #f2f5fa
+}
+.clsFormBorder {
+	BACKGROUND-COLOR: #f2f5fa; BORDER-BOTTOM: #a8b2bb 1px solid; BORDER-LEFT: #a8b2bb 1px solid; BORDER-RIGHT: #a8b2bb 1px solid; BORDER-TOP: #a8b2bb 1px solid
+}
+BODY {
+	FONT-FAMILY: Verdana; FONT-SIZE: 10px; scrollbar-base-color: #F2F5FA
+}
+.NewScroll {
+	scrollbar-base-color: #F2F5FA
+}
+TD.clsRaised {
+	BORDER-BOTTOM: #003060 1px solid; BORDER-RIGHT: #003060 1px solid; BORDER-TOP: #f2f5fa 1px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 5px
+}
+.clsNewsTitleBack {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #a8b2bb 1px solid; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 3px
+}
+.clsNewsReplyBack {
+	BORDER-BOTTOM: #a8b2bb 1px solid; PADDING-BOTTOM: 2px; WIDTH: 100%
+}
+.clsSideBarBlockLinkEven {
+	COLOR: #142f4a; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 80%; TEXT-DECORATION: none; VERTICAL-ALIGN: top
+}
+.clsSideBarBlockLink {
+	COLOR: #142f4a; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 80%; TEXT-DECORATION: none; VERTICAL-ALIGN: top
+}
+.clsStatsBlockLink {
+	COLOR: #142f4a; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 80%; TEXT-DECORATION: none
+}
+.clsSideBarBlockUL {
+	MARGIN-BOTTOM: 0px; MARGIN-LEFT: 15px; MARGIN-TOP: 0px
+}
